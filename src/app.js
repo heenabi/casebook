@@ -3,7 +3,7 @@ import mixpanel from "mixpanel-browser";
 import { MIXPANEL_TOKEN } from "./config.js";
 
 // Initialize Mixpanel
-mixpanel.init(MIXPANEL_TOKEN, { debug: true, track_pageview: true, persistence: 'localStorage' });
+mixpanel.init(MIXPANEL_TOKEN, { debug: false, track_pageview: true, persistence: 'localStorage' });
 
 // Track Initial Page View for retention
 mixpanel.track('Page_View');
