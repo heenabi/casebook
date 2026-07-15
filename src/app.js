@@ -60,13 +60,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Saved View Elements
   const btnDrawer       = document.getElementById("btn-drawer");
-  const savedView       = document.getElementById("saved-view");
-  const savedCasesList  = document.getElementById("saved-cases-list");
-  const savedEmptyState = document.getElementById("saved-empty-state");
+  const savedView         = document.getElementById("saved-view");
+  const savedCasesList    = document.getElementById("saved-cases-list");
+  const savedEmptyState   = document.getElementById("saved-empty-state");
   const savedCountBadge = document.getElementById("saved-count");
 
-  // Statistics Modal Elements Removed
+  const btnFeedback       = document.getElementById("btn-feedback");
+  const feedbackView        = document.getElementById("feedback-view");
+  const feedbackInputState  = document.getElementById("feedback-input-state");
+  const feedbackSuccessState= document.getElementById("feedback-success-state");
+  const feedbackTextarea    = document.getElementById("feedback-textarea");
+  const feedbackCharCount   = document.getElementById("feedback-char-count");
+  const btnSendFeedback     = document.getElementById("btn-send-feedback");
 
+  const toastContainer    = document.getElementById("toast-container");
   const btnClearSearch = document.getElementById("btn-clear-search");
   const btnHome = document.getElementById("btn-home");
   const btnGoHomeEmpty = document.getElementById("btn-go-home-empty");
@@ -141,27 +148,103 @@ document.addEventListener("DOMContentLoaded", () => {
   btnDrawer.addEventListener("click", () => {
     renderSavedCases();
     mainContainer.classList.add("hidden");
+    feedbackView.classList.add("hidden");
     savedView.classList.remove("hidden");
-    document.querySelectorAll(".header-btn").forEach(btn => btn.classList.remove("active"));
-    btnDrawer.classList.add("active");
+    updateActiveMenu(btnDrawer);
   });
 
-  // 6. Home Button Controls
+  // 6. Feedback View Controls
+  function resetFeedbackView() {
+    if (feedbackInputState) feedbackInputState.style.display = "flex";
+    if (feedbackSuccessState) feedbackSuccessState.classList.add("hidden");
+    if (feedbackTextarea) {
+      feedbackTextarea.value = "";
+      feedbackCharCount.textContent = "0";
+    }
+    // Reset chips
+    document.querySelectorAll(".feedback-chip").forEach(chip => chip.classList.remove("active"));
+    // Reset button
+    if (btnSendFeedback) btnSendFeedback.disabled = true;
+  }
+
+  function updateSendButtonState() {
+    const hasText = feedbackTextarea && feedbackTextarea.value.trim().length > 0;
+    const hasChip = document.querySelector(".feedback-chip.active") !== null;
+    if (btnSendFeedback) btnSendFeedback.disabled = !(hasText || hasChip);
+  }
+
+  if (btnFeedback) {
+    btnFeedback.addEventListener("click", () => {
+      mainContainer.classList.add("hidden");
+      savedView.classList.add("hidden");
+      feedbackView.classList.remove("hidden");
+      resetFeedbackView();
+      document.querySelectorAll(".header-btn").forEach(btn => btn.classList.remove("active"));
+      btnFeedback.classList.add("active");
+    });
+  }
+
+  // Feedback Chip Multi-Select
+  document.querySelectorAll(".feedback-chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+      chip.classList.toggle("active");
+      updateSendButtonState();
+    });
+  });
+
+  // Feedback Textarea Char Counter
+  if (feedbackTextarea) {
+    feedbackTextarea.addEventListener("input", (e) => {
+      let value = e.target.value;
+      if (value.length > 2000) {
+        value = value.substring(0, 2000);
+        feedbackTextarea.value = value;
+      }
+      feedbackCharCount.textContent = value.length;
+      updateSendButtonState();
+    });
+  }
+
+  // Send Feedback Button (Mixpanel)
+  if (btnSendFeedback) {
+    btnSendFeedback.addEventListener("click", () => {
+      const content = feedbackTextarea ? feedbackTextarea.value.trim() : "";
+      const selectedChips = [...document.querySelectorAll(".feedback-chip.active")].map(c => c.dataset.value);
+
+      // Track to Mixpanel
+      mixpanel.track('Feedback_Submitted', {
+        chips: selectedChips,
+        content: content,
+        length: content.length
+      });
+
+      // Show success state
+      if (feedbackInputState) feedbackInputState.style.display = "none";
+      if (feedbackSuccessState) feedbackSuccessState.classList.remove("hidden");
+    });
+  }
+
+  function updateActiveMenu(menuBtn) {
+    document.querySelectorAll(".header-btn").forEach(btn => btn.classList.remove("active"));
+    if (menuBtn) menuBtn.classList.add("active");
+  }
+
+  // Overwrite existing Home/Drawer toggles to also hide feedback-view
   if (btnHome) {
     btnHome.addEventListener("click", () => {
       savedView.classList.add("hidden");
+      feedbackView.classList.add("hidden");
       mainContainer.classList.remove("hidden");
-      document.querySelectorAll(".header-btn").forEach(btn => btn.classList.remove("active"));
-      btnHome.classList.add("active");
+      updateActiveMenu(btnHome);
     });
   }
 
   if (btnGoHomeEmpty) {
     btnGoHomeEmpty.addEventListener("click", () => {
       savedView.classList.add("hidden");
+      feedbackView.classList.add("hidden");
       mainContainer.classList.remove("hidden");
-      document.querySelectorAll(".header-btn").forEach(btn => btn.classList.remove("active"));
-      if(btnHome) btnHome.classList.add("active");
+      updateActiveMenu(btnHome);
     });
   }
 
