@@ -263,7 +263,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const badgeBg = isFail ? "var(--error,#d72a2a)" : "var(--succes,#03a900)";
 
     const outlinkHtml = c.출처
-      ? `<a href="${c.출처}" target="_blank" style="border: 1px solid var(--gray_04); border-radius: 16px; padding: 6px 30px; font-size: 12px; line-height: 18px; color: var(--gray_01); text-decoration: none;" rel="noopener noreferrer">출처 바로가기</a>`
+      ? `<a href="${c.출처}" target="_blank" class="card-outlink" style="border: 1px solid var(--gray_04); border-radius: 16px; padding: 6px 30px; font-size: 12px; line-height: 18px; color: var(--gray_01); text-decoration: none;" rel="noopener noreferrer">출처 바로가기</a>`
       : "";
 
     const headerHtml = `
