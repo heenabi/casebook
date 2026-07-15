@@ -1,4 +1,12 @@
 import { DESIGN_CASES } from "./cases-data.js?v=2";
+import mixpanel from "mixpanel-browser";
+import { MIXPANEL_TOKEN } from "./config.js";
+
+// Initialize Mixpanel
+mixpanel.init(MIXPANEL_TOKEN, { debug: true, track_pageview: true, persistence: 'localStorage' });
+
+// Track Initial Page View for retention
+mixpanel.track('Page_View');
 
 // ==========================================================================
 // Casebook Application Logic
@@ -168,6 +176,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Increment search count
     const searches = parseInt(localStorage.getItem(KEYS.TOTAL_SEARCHES) || "0") + 1;
     localStorage.setItem(KEYS.TOTAL_SEARCHES, searches.toString());
+
+    // Mixpanel Event: Search
+    mixpanel.track('Search_Performed', {
+      category: selectedCategory,
+      domain: selectedDomain
+    });
 
     // Category and Domain strict filtering
     let matchedCases = DESIGN_CASES.filter(c => {
@@ -378,6 +392,15 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.addEventListener("click", () => handleFeedback(c.id, btn.dataset.action));
     });
 
+    card.querySelectorAll(".card-outlink").forEach(link => {
+      link.addEventListener("click", () => {
+        mixpanel.track('Case_Clicked', {
+          case_id: c.id,
+          case_title: c.제목
+        });
+      });
+    });
+
     if (currentStatus === "adopt") {
       // Hide action area after 3 seconds
       setTimeout(() => {
@@ -410,6 +433,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const adoptions = parseInt(localStorage.getItem(KEYS.TOTAL_ADOPTIONS) || "0") + 1;
       localStorage.setItem(KEYS.TOTAL_ADOPTIONS, adoptions.toString());
       showToast("이 사례를 채택하고 보관함에 추가했습니다.");
+      
+      const caseData = DESIGN_CASES.find(c => c.id === caseId);
+      mixpanel.track('Case_Adopted', {
+        case_id: caseId,
+        case_title: caseData ? caseData.제목 : "",
+        source: savedView.classList.contains("hidden") ? "search_result" : "saved_cases"
+      });
     } else if (action === "reject") {
       const idx = savedIds.indexOf(caseId);
       if (idx > -1) { savedIds.splice(idx, 1); localStorage.setItem(KEYS.SAVED_IDS, JSON.stringify(savedIds)); }
@@ -489,6 +519,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
       savedCard.querySelectorAll(".btn-remove-saved").forEach(btn => {
         btn.addEventListener("click", () => handleFeedback(caseData.id, "cancel"));
+      });
+
+      savedCard.querySelectorAll(".saved-card-outlink").forEach(link => {
+        link.addEventListener("click", () => {
+          mixpanel.track('Case_Clicked', {
+            case_id: caseData.id,
+            case_title: caseData.제목
+          });
+        });
       });
 
       savedCasesList.appendChild(savedCard);
