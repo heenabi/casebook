@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casebook | 디자이너를 위한 실제 제품 개선 사례 교차검증</title>
+  <meta name="description"
+    content="사수와 동료가 없는 주니어 UI/UX 디자이너를 위해, 동일한 문제 상황을 푼 실제 서비스의 사례(문제-결정-결과)를 제공하여 의사결정을 돕는 교차검증 서비스입니다.">
+
+  <!-- Modern Fonts -->
+  <link rel="stylesheet" as="style" crossorigin
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="src/style.css?v=55">
+</head>
+
+<body>
+
+  <!-- App Container -->
+  <div class="app-layout">
+
+    <header class="app-header">
+      <div class="header-content">
+        <div class="logo-area">
+          <img src="Logo.svg" alt="CASEBOOK Logo" class="brand-logo" />
+        </div>
+        <nav class="center-nav">
+          <button id="btn-home" class="header-btn active">홈</button>
+          <button id="btn-drawer" class="header-btn">
+            보관함 <span id="saved-count" class="badge">0</span>
+          </button>
+        </nav>
+        <div class="right-actions"></div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="app-main">
+      <div class="main-container" id="main-container">
+
+        <!-- Left Column -->
+        <div class="left-column">
+          <!-- Welcome Banner -->
+          <section id="welcome-section" class="welcome-section">
+            <h2 class="t-title">다른 회사들이 어떻게 문제를 해결했는지 찾아보세요</h2>
+            <p class="t-body1-r">의사결정 과정과 검증 결과가 있는 실제 서비스 사례만 모았습니다.</p>
+          </section>
+
+          <!-- Search Form Component -->
+          <section id="search-section" class="search-section card">
+            <div id="results-header-left" class="results-header-left hidden" style="margin-bottom: 16px;">
+              <h3 id="results-count-title"
+                style="font-size: 18px; line-height: 24px; font-weight: 600; color: var(--black);">비슷한 실제 사례 0건을 찾았어요
+              </h3>
+            </div>
+
+            <form id="search-form" novalidate>
+              <!-- Category Filter -->
+              <div class="form-group">
+                <label class="form-label t-body2-sb">
+                  현재 프로젝트의 목적이 무엇인가요?
+                </label>
+                <div id="category-chips" class="chip-group">
+                  <button type="button" class="chip-btn" data-value="가입">가입 전환율 개선</button>
+                  <button type="button" class="chip-btn" data-value="인증/본인확인">인증/본인확인 개선</button>
+                  <button type="button" class="chip-btn" data-value="정보입력">정보입력 허들 낮추기</button>
+                  <button type="button" class="chip-btn" data-value="인트로">인트로 이탈률 감소</button>
+                  <button type="button" class="chip-btn" data-value="결제">결제 전환율 개선</button>
+                  <button type="button" class="chip-btn" data-value="홈">효율적인 화면 구성</button>
+                </div>
+              </div>
+
+              <!-- Domain Filter -->
+              <div class="form-group">
+                <label class="form-label t-body2-sb">
+                  서비스 도메인이 어디인가요?
+                </label>
+                <div id="domain-chips" class="chip-group">
+                  <button type="button" class="chip-btn" data-value="핀테크">핀테크</button>
+                  <button type="button" class="chip-btn" data-value="커머스">커머스</button>
+                  <button type="button" class="chip-btn" data-value="헬스케어">헬스케어</button>
+                  <button type="button" class="chip-btn" data-value="글로벌">글로벌</button>
+                  <button type="button" class="chip-btn" data-value="콘텐츠">콘텐츠</button>
+                  <button type="button" class="chip-btn" data-value="에듀테크">에듀테크</button>
+                  <button type="button" class="chip-btn" data-value="B2B">B2B</button>
+                </div>
+              </div>
+
+              <!-- Input Box -->
+              <div class="form-group">
+                <label for="input-query" class="form-label t-body2-sb">
+                  해결하고 싶은 문제를 작성해 주세요 (선택)
+                </label>
+                <div class="input-container" style="border-radius: 8px;">
+                  <input type="text" id="input-query" class="t-caption-r" maxlength="50"
+                    placeholder="예: 소셜로그인 추가할 때 단계 구성은 어떻게 할까?" autocomplete="off">
+                  <span id="char-counter" class="char-counter t-caption-r">0/50</span>
+                </div>
+                <span id="validation-msg" class="validation-message"></span>
+              </div>
+
+              <!-- Form Actions -->
+              <div class="form-actions" style="display: flex; gap: 12px; width: 100%;">
+                <button type="button" id="btn-clear-search" class="btn btn-small btn-line hidden"
+                  style="flex: 3; flex-shrink: 0;">
+                  <img src="Icon/Property 1=Refresh, Type=Line.svg" alt="" style="width: 20px; height: 20px;">
+                  <span>초기화</span>
+                </button>
+                <button type="submit" id="btn-search" class="btn btn-small btn-fill"
+                  style="flex: 7; flex-shrink: 0;" disabled>
+                  <span>비슷한 사례 찾기</span>
+                </button>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <!-- Right Column -->
+        <div id="right-column" class="right-column hidden">
+          <!-- Results Section -->
+          <section id="results-section" class="results-section">
+            <div id="cases-list" class="cases-list">
+              <!-- Dynamic Cards injected here -->
+            </div>
+          </section>
+
+          <!-- Empty State -->
+          <section id="empty-state" class="empty-state hidden">
+            <h4>목적, 도메인을 변경하거나, 다른 검색어로 다시 시도해 주세요.</h4>
+          </section>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Saved Cases View -->
+    <div id="saved-view" class="saved-view-container hidden">
+      <div id="saved-cases-list" class="saved-cases-list">
+        <!-- Saved cards injected here -->
+      </div>
+      <div id="saved-empty-state" class="saved-empty-state">
+        <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 8px;">
+          <h2 style="font-size: 24px; font-weight: 700; color: var(--black); margin: 0;">아직 보관한 사례가 없어요</h2>
+          <p style="font-size: 16px; font-weight: 400; line-height: 24px; color: var(--gray_01); margin: 0 0 24px 0;">다른 회사들이 어떻게 문제를 해결했는지 찾아보세요</p>
+          <button id="btn-go-home-empty" class="btn btn-fill" style="width: 100%; max-width: 400px; height: 56px; border-radius: 12px; font-size: 16px; font-weight: 600;">비슷한 사례 찾으러 가기</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Removed Stats Modal -->
+  </div>
+
+  <!-- JavaScript Module -->
+  <script type="module" src="src/app.js?v=55"></script>
+</body>
+
+</html>
