@@ -3,7 +3,7 @@ import mixpanel from "mixpanel-browser";
 import { MIXPANEL_TOKEN } from "./config.js";
 
 // Initialize Mixpanel
-mixpanel.init(MIXPANEL_TOKEN, { debug: false, track_pageview: true, persistence: 'localStorage' });
+mixpanel.init(MIXPANEL_TOKEN, { debug: true, track_pageview: true, persistence: 'localStorage' });
 
 // Track Initial Page View for retention
 mixpanel.track('Page_View');
@@ -211,11 +211,15 @@ document.addEventListener("DOMContentLoaded", () => {
       const content = feedbackTextarea ? feedbackTextarea.value.trim() : "";
       const selectedChips = [...document.querySelectorAll(".feedback-chip.active")].map(c => c.dataset.value);
 
+      console.log('[FEEDBACK] Track firing with:', { chips: selectedChips, content, length: content.length });
+
       // Track to Mixpanel
       mixpanel.track('Feedback_Submitted', {
         chips: selectedChips,
-        content: content,
-        length: content.length
+        feedback_content: content,
+        content_length: content.length
+      }, function(response) {
+        console.log('[FEEDBACK] Mixpanel track response:', response);
       });
 
       // Show success state
