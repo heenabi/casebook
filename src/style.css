@@ -871,6 +871,15 @@ html {
   overflow: hidden;
 }
 
+.saved-card-thumbnail::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(51, 51, 51, 0.50) 0%, rgba(51, 51, 51, 0.15) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
 .saved-card-thumbnail > img:not(.bookmark-icon) {
   width: 100%;
   height: 100%;
@@ -951,7 +960,7 @@ html {
 .saved-card-outlink {
   border: 1px solid var(--gray_04);
   border-radius: 16px;
-  padding: 6px 12px;
+  padding: 6px 8px;
   font-size: 12px;
   line-height: 18px;
   color: var(--gray_01);

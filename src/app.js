@@ -14,9 +14,33 @@ mixpanel.track('Page_View');
 
 document.addEventListener("DOMContentLoaded", () => {
   // --- State Variables ---
-  let selectedCategory = null;
-  let selectedDomain = null;
+  let selectedCategories = [];
+  let selectedDomains = [];
   let queryText = "";
+
+  // --- Category Key → Display Label Mapping ---
+  const CATEGORY_LABELS = {
+    "가입":       "가입 전환율 개선",
+    "인증/본인확인": "인증/본인확인 개선",
+    "정보입력":    "정보입력 허들 낮추기",
+    "인트로":     "인트로 이탈률 감소",
+    "결제":       "결제 전환율 개선",
+    "홈":         "효율적인 화면 구성",
+    "효율적인":   "효율적인 화면 구성"
+  };
+  function getCategoryLabel(cat) {
+    for (const [key, label] of Object.entries(CATEGORY_LABELS)) {
+      if (cat.includes(key)) return label;
+    }
+    return cat;
+  }
+
+  // --- Valid Domains (must match filter chips) ---
+  const VALID_DOMAINS = ['핀테크', '커머스', '헬스케어', '글로벌', '콘텐츠', '에듀테크', 'B2B'];
+  function getDisplayDomains(domainStr) {
+    if (!domainStr) return [];
+    return domainStr.split(/,\s*/).filter(d => VALID_DOMAINS.includes(d.trim()));
+  }
 
   // --- LocalStorage Keys ---
   const KEYS = {
@@ -41,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const btnSearch       = document.getElementById("btn-search");
 
   function updateSearchButtonState() {
-    if (selectedCategory && selectedDomain) {
+    if (selectedCategories.length > 0 && selectedDomains.length > 0) {
       btnSearch.disabled = false;
     } else {
       btnSearch.disabled = true;
@@ -85,33 +109,33 @@ document.addEventListener("DOMContentLoaded", () => {
   // Event Listeners
   // ==========================================================================
 
-  // 1. Category Chip Click
+  // 1. Category Chip Click (multi-select)
   categoryChips.addEventListener("click", (e) => {
     const target = e.target;
     if (!target.classList.contains("chip-btn")) return;
-    const isAlreadyActive = target.classList.contains("active");
-    categoryChips.querySelectorAll(".chip-btn").forEach(btn => btn.classList.remove("active"));
-    if (isAlreadyActive) {
-      selectedCategory = null;
+    const value = target.dataset.value;
+    if (target.classList.contains("active")) {
+      target.classList.remove("active");
+      selectedCategories = selectedCategories.filter(v => v !== value);
     } else {
       target.classList.add("active");
-      selectedCategory = target.dataset.value;
+      selectedCategories.push(value);
       clearValidationError();
     }
     updateSearchButtonState();
   });
 
-  // 2. Domain Chip Click
+  // 2. Domain Chip Click (multi-select)
   domainChips.addEventListener("click", (e) => {
     const target = e.target;
     if (!target.classList.contains("chip-btn")) return;
-    const isAlreadyActive = target.classList.contains("active");
-    domainChips.querySelectorAll(".chip-btn").forEach(btn => btn.classList.remove("active"));
-    if (isAlreadyActive) {
-      selectedDomain = null;
+    const value = target.dataset.value;
+    if (target.classList.contains("active")) {
+      target.classList.remove("active");
+      selectedDomains = selectedDomains.filter(v => v !== value);
     } else {
       target.classList.add("active");
-      selectedDomain = target.dataset.value;
+      selectedDomains.push(value);
       clearValidationError();
     }
     updateSearchButtonState();
@@ -132,12 +156,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // 4. Form Submit
   searchForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (!selectedCategory) {
-      showValidationError("현재 프로젝트의 목적(카테고리)을 선택해 주세요.");
+    if (selectedDomains.length === 0) {
+      showValidationError("서비스 도메인을 선택해 주세요.");
       return;
     }
-    if (!selectedDomain) {
-      showValidationError("해당하는 서비스 도메인을 선택해 주세요.");
+    if (selectedCategories.length === 0) {
+      showValidationError("현재 프로젝트의 목적(카테고리)을 선택해 주세요.");
       return;
     }
     clearValidationError();
@@ -262,15 +286,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Mixpanel Event: Search
     mixpanel.track('Search_Performed', {
-      category: selectedCategory,
-      domain: selectedDomain
+      categories: selectedCategories,
+      domains: selectedDomains
     });
 
-    // Category and Domain strict filtering
+    // Category and Domain multi-select filtering
     let matchedCases = DESIGN_CASES.filter(c => {
-      const categories = Array.isArray(c.문제카테고리) ? c.문제카테고리 : [c.문제카테고리];
-      const matchCategory = categories.some(cat => cat.includes(selectedCategory));
-      const matchDomain = c.도메인 && c.도메인.includes(selectedDomain);
+      const caseCats = Array.isArray(c.문제카테고리) ? c.문제카테고리 : [c.문제카테고리];
+      const matchCategory = selectedCategories.some(sel => caseCats.some(cat => cat.includes(sel)));
+      const matchDomain = selectedDomains.some(sel => c.도메인 && c.도메인.includes(sel));
       return matchCategory && matchDomain;
     });
 
@@ -291,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     scoredCases.sort((a, b) => b.score - a.score);
-    const finalResults = scoredCases.slice(0, 3).map(item => item.caseData);
+    const finalResults = scoredCases.map(item => item.caseData);
 
     renderResults(finalResults);
   }
@@ -346,7 +370,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const badgeBg = isFail ? "var(--error,#d72a2a)" : "var(--succes,#03a900)";
 
     const outlinkHtml = c.출처
-      ? `<a href="${c.출처}" target="_blank" class="card-outlink" style="border: 1px solid var(--gray_04); border-radius: 16px; padding: 6px 30px; font-size: 12px; line-height: 18px; color: var(--gray_01); text-decoration: none;" rel="noopener noreferrer">출처 바로가기</a>`
+      ? `<a href="${c.출처}" target="_blank" class="card-outlink" style="border: 1px solid var(--gray_04); border-radius: 16px; padding: 6px 10px; font-size: 12px; line-height: 18px; color: var(--gray_01); text-decoration: none;" rel="noopener noreferrer">출처 바로가기</a>`
       : "";
 
     const headerHtml = `
@@ -384,7 +408,8 @@ document.addEventListener("DOMContentLoaded", () => {
           
           <!-- Thumbnail (Left, 35%) -->
           <div style="flex: 3.5; position: relative; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 4 / 3;">
-            <img src="${imageUrl}" alt="${c.제목} 썸네일" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.85;" />
+            <img src="${imageUrl}" alt="${c.제목} 썸네일" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" />
+            <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(51, 51, 51, 0.50) 0%, rgba(51, 51, 51, 0.15) 100%); pointer-events: none; z-index: 1;"></div>
             <img src="${bookmarkIconSrc}" alt="Bookmark" class="thumbnail-bookmark-btn" data-action="${currentStatus === 'adopt' ? 'cancel' : 'adopt'}" style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; filter: brightness(0) invert(1); cursor: pointer; z-index: 10;" />
           </div>
           
@@ -421,6 +446,18 @@ document.addEventListener("DOMContentLoaded", () => {
           <div style="display: flex; flex-direction: column; gap: 4px; padding: 8px 0 0 0;">
             <div style="font-weight: 600; font-size: 14px; color: var(--black); line-height: 20px;">근거</div>
             <div style="font-size: 14px; color: var(--gray_01); line-height: 20px; white-space: pre-wrap;">${c.근거 || "-"}</div>
+          </div>
+          <!-- 도메인 + 프로젝트 목적 태그 -->
+          <div style="display: flex; flex-direction: row; align-items: center; gap: 12px; padding-top: 12px; flex-wrap: wrap;">
+            ${[
+              ...getDisplayDomains(c.도메인).map(d => '#' + d),
+              ...[...new Set(
+                (Array.isArray(c.문제카테고리) ? c.문제카테고리 : (c.문제카테고리 ? [c.문제카테고리] : []))
+                  .map(cat => getCategoryLabel(cat))
+              )].map(label => '#' + label)
+            ].filter(Boolean).map(tag =>
+              `<span style="font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 18px; color: var(--Purple, #5D21D0);">${tag}</span>`
+            ).join('')}
           </div>
         </div>
         
@@ -562,24 +599,30 @@ document.addEventListener("DOMContentLoaded", () => {
       const badgeText = isFail ? "실패" : "성공";
       const badgeClass = isFail ? "badge-fail" : "badge-success";
       
-      // Parse tags
-      const tags = [];
-      if (caseData.목적) tags.push(caseData.목적);
-      if (caseData.도메인) tags.push(caseData.도메인);
-      
-      const tagsHtml = tags.map(t => `
+      // Parse tags: domain (valid only) + categories (deduped)
+      const domainTags = getDisplayDomains(caseData.도메인).map(d => '#' + d);
+      const catTags = [...new Set(
+        (Array.isArray(caseData.문제카테고리)
+          ? caseData.문제카테고리
+          : (caseData.문제카테고리 ? [caseData.문제카테고리] : []))
+          .map(cat => getCategoryLabel(cat))
+      )].map(label => '#' + label);
+      const allTags = [...domainTags, ...catTags].filter(Boolean);
+
+      const tagsHtml = allTags.map(t => `
         <div style="display: flex; align-items: center; justify-content: center;">
-          <p style="line-height: 18px;">${t}</p>
+          <p style="font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 18px; color: var(--Purple, #5D21D0);">${t}</p>
         </div>
       `).join("");
 
       const outlinkHtml = caseData.출처
-        ? `<a href="${caseData.출처}" target="_blank" class="saved-card-outlink" rel="noopener noreferrer">출처 바로가기</a>`
+        ? `<a href="${caseData.출처}" target="_blank" class="saved-card-outlink" rel="noopener noreferrer">출처</a>`
         : "";
 
       savedCard.innerHTML = `
         <div class="saved-card-thumbnail">
           <img src="${imageUrl}" alt="${caseData.제목} 썸네일" loading="lazy" />
+          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(51, 51, 51, 0.50) 0%, rgba(51, 51, 51, 0.15) 100%); pointer-events: none; z-index: 1;"></div>
           <img src="Icon/Property 1=Bookmark, Type=Fill.svg" alt="북마크 해제" class="bookmark-icon btn-remove-saved" data-id="${caseData.id}" style="filter: brightness(0) invert(1);" />
         </div>
         <div class="saved-card-content">
@@ -662,12 +705,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function resetSearchForm() {
-    selectedCategory = null;
-    selectedDomain   = null;
-    queryText        = "";
+    selectedCategories = [];
+    selectedDomains    = [];
+    queryText          = "";
     categoryChips.querySelectorAll(".chip-btn").forEach(btn => btn.classList.remove("active"));
     domainChips.querySelectorAll(".chip-btn").forEach(btn => btn.classList.remove("active"));
-    inputQuery.value    = "";
+    inputQuery.value        = "";
     charCounter.textContent = "0 / 50";
     clearValidationError();
     
