@@ -582,12 +582,13 @@ const initApp = () => {
   function renderSavedCases() {
     savedCasesList.innerHTML = "";
     const savedIds = getSavedIds();
-    if (savedIds.length === 0) { savedEmptyState.classList.remove("hidden"); return; }
-    savedEmptyState.classList.add("hidden");
-
+    
+    let renderedCount = 0;
     savedIds.forEach(id => {
-      const caseData = DESIGN_CASES.find(c => c.id === id);
+      // Allow loose matching just in case old integer IDs are stored as strings
+      const caseData = DESIGN_CASES.find(c => c.id === id || String(c.id) === String(id));
       if (!caseData) return;
+      renderedCount++;
 
       const savedCard = document.createElement("div");
       savedCard.className = "saved-card";
