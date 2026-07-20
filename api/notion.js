@@ -158,6 +158,52 @@ ${JSON.stringify(casesToProcess.map(c => ({ id: c.id, title: c.제목, problem: 
       }
     }
 
+    // --- Lazy OG Image Scraping ---
+    const casesToScrape = validCases.filter(c => !c.이미지 && c.출처).slice(0, 3);
+    if (casesToScrape.length > 0) {
+      for (const c of casesToScrape) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 2000); // 2s timeout per image
+          const res = await fetch(c.출처, { 
+            headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36' },
+            signal: controller.signal 
+          });
+          clearTimeout(timeoutId);
+          
+          if (res.ok) {
+            const html = await res.text();
+            const match = html.match(/<meta[^>]*property=['"]og:image['"][^>]*content=['"]([^'"]+)['"]/i) || 
+                          html.match(/<meta[^>]*content=['"]([^'"]+)['"][^>]*property=['"]og:image['"]/i);
+            
+            if (match && match[1]) {
+              c.이미지 = match[1];
+              
+              // Find the actual property key in Notion to update
+              const pageProps = data.results.find(p => p.id === c.id)?.properties || {};
+              const imgKey = ["이미지", "썸네일", "Image", "Thumbnail"].find(k => pageProps[k]) || "이미지";
+
+              fetch(`https://api.notion.com/v1/pages/${c.id}`, {
+                method: "PATCH",
+                headers: {
+                  "Authorization": `Bearer ${NOTION_API_KEY}`,
+                  "Notion-Version": "2022-06-28",
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                  properties: {
+                    [imgKey]: { files: [{ name: "og_image", type: "external", external: { url: c.이미지 } }] }
+                  }
+                })
+              }).catch(e => console.error("Notion image PATCH failed:", e));
+            }
+          }
+        } catch (e) {
+          console.error("OG Image fetching failed for", c.출처, e.message);
+        }
+      }
+    }
+
     return res.status(200).json(validCases);
   } catch (error) {
     console.error("Notion API error:", error);
