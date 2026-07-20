@@ -23,14 +23,15 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    const FALLBACK_IMAGES = {
-      "가입 과정 개선": "https://static.toss.im/simplicity23/graphics/sim23-signup-og.png",
-      "외국인 유저 인증 개선": "https://static.toss.im/ml-illust/spq0kqa82fmyu5jp7ruvbhkd-resize.png",
-      "29CM 스타일 온보딩 — 룩북 선택으로 가입·구매 전환율 동시 개선": "https://ik.imagekit.io/jayyoungjunkim/thumb/29cm_style-onboarding_thumb.png?updatedAt=1746955895655",
-      "라프텔 멤버십 구매 버튼 레이블 개선 — 클릭률 20%→50%": "https://blog.laftel.net/api/image?type=post-property&pageId=21d3f992-bb7e-8003-aae7-f92a2dc2f232&propertyId=x%3Cjj",
-      "강남언니 일본 로그인 화면 개선 — 실패를 통해 배우는 A/B 테스트": "https://blog.gangnamunni.com/contents/posts/224d9338-d3d4-8072-a11d-d28bb783c01a/cover/20210217.jpeg",
-      "배민 온라인 입점신청 개선 — OCR 도입과 퍼널 축소": "https://techblog.woowa.in/wp-content/uploads/2024/12/PM-디자이너-개발자가-함께한-배달의민족-입점-과정-개선기.png",
-      "B마트 테마관(신선관·뷰티관) 탐색 편의성 개선": "https://techblog.woowa.in/wp-content/uploads/2024/07/B마트-테마관-개선기-오픈이-끝_-No-함께하는-동료들과-프로덕트-꾸준히-발전시키기.png"
+    const getFallbackImage = (title) => {
+      if (title.includes("가입 과정")) return "https://static.toss.im/simplicity23/graphics/sim23-signup-og.png";
+      if (title.includes("외국인 유저")) return "https://static.toss.im/ml-illust/spq0kqa82fmyu5jp7ruvbhkd-resize.png";
+      if (title.includes("29CM")) return "https://ik.imagekit.io/jayyoungjunkim/thumb/29cm_style-onboarding_thumb.png?updatedAt=1746955895655";
+      if (title.includes("라프텔")) return "https://blog.laftel.net/api/image?type=post-property&pageId=21d3f992-bb7e-8003-aae7-f92a2dc2f232&propertyId=x%3Cjj";
+      if (title.includes("강남언니")) return "https://blog.gangnamunni.com/contents/posts/224d9338-d3d4-8072-a11d-d28bb783c01a/cover/20210217.jpeg";
+      if (title.includes("입점신청")) return "https://techblog.woowa.in/wp-content/uploads/2024/12/PM-디자이너-개발자가-함께한-배달의민족-입점-과정-개선기.png";
+      if (title.includes("테마관")) return "https://techblog.woowa.in/wp-content/uploads/2024/07/B마트-테마관-개선기-오픈이-끝_-No-함께하는-동료들과-프로덕트-꾸준히-발전시키기.png";
+      return "";
     };
 
     const cases = data.results.map(page => {
@@ -79,7 +80,7 @@ export default async function handler(req, res) {
       
       let finalImg = getValue(["이미지", "썸네일", "Image", "Thumbnail"]);
       if (!finalImg) {
-        finalImg = FALLBACK_IMAGES[resultData.제목] || "";
+        finalImg = getFallbackImage(resultData.제목);
       }
       resultData.이미지 = finalImg;
       
@@ -91,11 +92,11 @@ export default async function handler(req, res) {
 
     // --- Lazy AI Processing ---
     const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-    const casesToProcess = validCases.filter(c => !c.요약 || c.요약.trim() === "-" || c.요약.trim() === "");
+    // Process max 3 items per request to avoid 10s Vercel timeout
+    const casesToProcess = validCases.filter(c => !c.요약 || c.요약.trim() === "-" || c.요약.trim() === "").slice(0, 3);
 
     if (GEMINI_API_KEY && casesToProcess.length > 0) {
       try {
-        // We'll process them in one batch to save time
         const prompt = `You are an expert UX writing assistant. Rewrite the following design cases in Korean.
 For each case, provide:
 1. "요약": A 1-line summary using polite, kind, and friendly tone (존댓말, ~했습니다, 자상하고 친절한 어투). DO NOT use exclamation marks (!).
@@ -107,7 +108,7 @@ Data to process:
 ${JSON.stringify(casesToProcess.map(c => ({ id: c.id, title: c.제목, problem: c.문제, decision: c.결정, reason: c.근거, result: c.결과 })), null, 2)}
 `;
 
-        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -121,7 +122,6 @@ ${JSON.stringify(casesToProcess.map(c => ({ id: c.id, title: c.제목, problem: 
           const text = geminiData.candidates[0].content.parts[0].text;
           const processedArray = JSON.parse(text);
 
-          // Merge back into validCases and update Notion
           for (const processed of processedArray) {
             const targetCase = validCases.find(c => c.id === processed.id);
             if (targetCase) {
@@ -131,7 +131,6 @@ ${JSON.stringify(casesToProcess.map(c => ({ id: c.id, title: c.제목, problem: 
               targetCase.근거 = processed.근거;
               targetCase.결과 = processed.결과;
 
-              // Fire-and-forget PATCH to Notion (doesn't block response too long)
               fetch(`https://api.notion.com/v1/pages/${processed.id}`, {
                 method: "PATCH",
                 headers: {
@@ -151,6 +150,8 @@ ${JSON.stringify(casesToProcess.map(c => ({ id: c.id, title: c.제목, problem: 
               }).catch(e => console.error("Notion PATCH failed:", e));
             }
           }
+        } else {
+          console.error("Gemini failed:", await geminiRes.text());
         }
       } catch (e) {
         console.error("Gemini API processing failed:", e);
