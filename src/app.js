@@ -12,7 +12,7 @@ mixpanel.track('Page_View');
 // Casebook Application Logic
 // ==========================================================================
 
-document.addEventListener("DOMContentLoaded", () => {
+const initApp = () => {
   // --- State Variables ---
   let selectedCategories = [];
   let selectedDomains = [];
@@ -745,4 +745,10 @@ document.addEventListener("DOMContentLoaded", () => {
       toast.classList.remove("show");
     }, 3000);
   }
-});
+};
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}
