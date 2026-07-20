@@ -393,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const summaryHtml = "";
 
-    const fallbackImage = "https://via.placeholder.com/800x400/EEEEEE/999999?text=No+Image";
+    const fallbackImage = 'data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400"%3E%3Crect width="800" height="400" fill="%23EEEEEE"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="32" fill="%23999999"%3ENo Image%3C/text%3E%3C/svg%3E';
     const imageUrl = c.이미지 || fallbackImage;
     const bookmarkIconSrc = currentStatus === "adopt" 
       ? "Icon/Property 1=Bookmark, Type=Fill.svg" 
@@ -592,7 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const savedCard = document.createElement("div");
       savedCard.className = "saved-card";
 
-      const fallbackImage = "https://via.placeholder.com/410x232/EEEEEE/999999?text=No+Image";
+      const fallbackImage = 'data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="410" height="232" viewBox="0 0 410 232"%3E%3Crect width="410" height="232" fill="%23EEEEEE"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23999999"%3ENo Image%3C/text%3E%3C/svg%3E';
       const imageUrl = caseData.이미지 || fallbackImage;
       
       const isFail = caseData.제목.includes("실패");
@@ -615,15 +615,15 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `).join("");
 
-      const outlinkHtml = caseData.출처
-        ? `<a href="${caseData.출처}" target="_blank" class="saved-card-outlink" rel="noopener noreferrer">출처</a>`
-        : "";
+      const summaryContent = caseData.요약 || "-";
+      const summaryHtml = caseData.출처 
+        ? `<a href="${caseData.출처}" target="_blank" rel="noopener noreferrer" class="saved-card-summary saved-card-summary-link" style="text-decoration: none; color: inherit; display: block; cursor: pointer;">${summaryContent}</a>`
+        : `<div class="saved-card-summary">${summaryContent}</div>`;
 
       savedCard.innerHTML = `
         <div class="saved-card-thumbnail">
-          <img src="${imageUrl}" alt="${caseData.제목} 썸네일" loading="lazy" />
-          <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(51, 51, 51, 0.50) 0%, rgba(51, 51, 51, 0.15) 100%); pointer-events: none; z-index: 1;"></div>
-          <img src="Icon/Property 1=Bookmark, Type=Fill.svg" alt="북마크 해제" class="bookmark-icon btn-remove-saved" data-id="${caseData.id}" style="filter: brightness(0) invert(1);" />
+          <img src="${imageUrl}" alt="${caseData.제목} 썸네일" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          <img src="Icon/Property 1=Bookmark, Type=Fill.svg" alt="북마크 해제" class="bookmark-icon btn-remove-saved" data-id="${caseData.id}" style="filter: brightness(0) invert(1); z-index: 2;" />
         </div>
         <div class="saved-card-content">
           <div style="display: flex; flex-direction: column; gap: 8px;">
@@ -633,12 +633,11 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div class="saved-card-title" style="margin-bottom: 0;">${caseData.제목}</div>
           </div>
-          <div class="saved-card-summary">${caseData.요약 || "-"}</div>
+          ${summaryHtml}
           <div class="saved-card-meta">
             <div class="saved-card-tags">
               ${tagsHtml}
             </div>
-            ${outlinkHtml}
           </div>
         </div>
       `;
@@ -647,7 +646,7 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener("click", () => handleFeedback(caseData.id, "cancel"));
       });
 
-      savedCard.querySelectorAll(".saved-card-outlink").forEach(link => {
+      savedCard.querySelectorAll(".saved-card-summary-link").forEach(link => {
         link.addEventListener("click", () => {
           mixpanel.track('Case_Clicked', {
             case_id: caseData.id,
