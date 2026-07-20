@@ -393,7 +393,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const summaryHtml = "";
 
-    const fallbackImage = 'data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400"%3E%3Crect width="800" height="400" fill="%23EEEEEE"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="32" fill="%23999999"%3ENo Image%3C/text%3E%3C/svg%3E';
+    const fallbackImage = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgODAwIDQwMCI+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNFRUVFRUUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzIiIGZpbGw9IiM5OTk5OTkiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==";
     const imageUrl = c.이미지 || fallbackImage;
     const bookmarkIconSrc = currentStatus === "adopt" 
       ? "Icon/Property 1=Bookmark, Type=Fill.svg" 
@@ -592,7 +592,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const savedCard = document.createElement("div");
       savedCard.className = "saved-card";
 
-      const fallbackImage = 'data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" width="410" height="232" viewBox="0 0 410 232"%3E%3Crect width="410" height="232" fill="%23EEEEEE"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-family="sans-serif" font-size="24" fill="%23999999"%3ENo Image%3C/text%3E%3C/svg%3E';
+      const fallbackImage = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MTAiIGhlaWdodD0iMjMyIiB2aWV3Qm94PSIwIDAgNDEwIDIzMiI+PHJlY3Qgd2lkdGg9IjQxMCIgaGVpZ2h0PSIyMzIiIGZpbGw9IiNFRUVFRUUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5OTk5OTkiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==";
       const imageUrl = caseData.이미지 || fallbackImage;
       
       const isFail = caseData.제목.includes("실패");
