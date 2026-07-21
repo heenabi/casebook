@@ -547,7 +547,7 @@ const initApp = () => {
     if (imgEl && (!c.이미지 || c.이미지.trim() === "")) {
       const sourceUrl = imgEl.dataset.src;
       if (sourceUrl) {
-        fetch(\`/api/og?url=\${encodeURIComponent(sourceUrl)}\`)
+        fetch(`/api/og?url=${encodeURIComponent(sourceUrl)}`)
           .then(r => r.json())
           .then(data => {
             if (data.image) {
@@ -726,7 +726,7 @@ const initApp = () => {
       if (imgEl && (!caseData.이미지 || caseData.이미지.trim() === "")) {
         const sourceUrl = imgEl.dataset.src;
         if (sourceUrl) {
-          fetch(\`/api/og?url=\${encodeURIComponent(sourceUrl)}\`)
+          fetch(`/api/og?url=${encodeURIComponent(sourceUrl)}`)
             .then(r => r.json())
             .then(data => {
               if (data.image) {
