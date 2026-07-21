@@ -46,8 +46,9 @@ function generateCardHTML(c, currentStatus) {
     `<div style="display: flex; flex-direction: column; justify-content: center; flex-shrink: 0;"><p style="font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 18px; color: var(--gray_01,#666); margin: 0;">${tag}</p></div>`
   ).join('');
 
-  const outlinkHtml = c.출처
-    ? `<a href="${c.출처}" target="_blank" class="card-outlink" style="border: 1px solid var(--gray_03,#bbb); border-radius: 16px; padding: 6px 12px; display: flex; align-items: center; justify-content: center; text-decoration: none; flex-shrink: 0;" rel="noopener noreferrer"><span style="font-family: Pretendard; font-size: 14px; font-weight: 400; line-height: 20px; color: var(--black,#333); white-space: nowrap;">출처 바로가기</span></a>`
+  const isValidSource = c.출처 && c.출처.trim().startsWith("http");
+  const outlinkHtml = isValidSource
+    ? `<a href="${c.출처.trim()}" target="_blank" class="card-outlink" style="border: 1px solid var(--gray_03,#bbb); border-radius: 16px; padding: 6px 12px; display: flex; align-items: center; justify-content: center; text-decoration: none; flex-shrink: 0;" rel="noopener noreferrer"><span style="font-family: Pretendard; font-size: 14px; font-weight: 400; line-height: 20px; color: var(--black,#333); white-space: nowrap;">출처 바로가기</span></a>`
     : "";
 
   const isBookmarked = currentStatus === "adopt";
