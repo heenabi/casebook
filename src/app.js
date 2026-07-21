@@ -180,7 +180,10 @@ function generateSavedCardHTML(c) {
           </div>
         </div>
         <div style="display: flex; align-items: center; width: 100%; gap: 8px; padding-bottom: 16px;">
-          <h4 style="font-family: Pretendard; font-size: 20px; font-weight: 600; line-height: 28px; color: var(--ft_title,#1c1e22); margin: 0; flex: 1; word-break: break-word;">${c.제목}</h4>
+          ${c.출처 && c.출처.trim().startsWith("http")
+            ? `<a href="${c.출처.trim()}" target="_blank" rel="noopener noreferrer" class="saved-card-title-link" style="font-family: Pretendard; font-size: 20px; font-weight: 600; line-height: 28px; color: var(--ft_title,#1c1e22); margin: 0; flex: 1; word-break: break-word; text-decoration: none; cursor: pointer;">${c.제목}</a>`
+            : `<h4 style="font-family: Pretendard; font-size: 20px; font-weight: 600; line-height: 28px; color: var(--ft_title,#1c1e22); margin: 0; flex: 1; word-break: break-word;">${c.제목}</h4>`
+          }
         </div>
       </div>
 

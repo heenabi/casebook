@@ -857,6 +857,10 @@ html {
   gap: 24px;
 }
 
+.saved-card-title-link:hover {
+  text-decoration: underline;
+}
+
 .saved-card {
   display: flex;
   flex-direction: column;
