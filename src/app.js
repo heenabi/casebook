@@ -93,11 +93,11 @@ function generateCardHTML(c, currentStatus) {
             <div style="display: flex; gap: 12px; align-items: flex-start; position: relative;" class="reaction-container">
               <div class="vote-btn helpful-btn" data-id="${c.id}" data-title="${c.제목}" style="border: 1px solid var(--gray_05,#ddd); border-radius: 8px; display: flex; gap: 8px; align-items: center; justify-content: center; padding: 8px 16px; cursor: pointer; width: 114px; box-sizing: border-box; transition: opacity 0.3s ease;">
                 <span style="font-family: Pretendard; font-size: 14px; font-weight: 500; line-height: 20px; color: var(--ft_default,#313741); white-space: nowrap;">도움돼요</span>
-                <img src="Icon/Property 1=Thumb_up, Type=Outline.svg" alt="도움돼요" style="width: 24px; height: 24px; pointer-events: none;" />
+                <img src="Icon/Property 1=like, Type=Line.svg" alt="도움돼요" style="width: 24px; height: 24px; pointer-events: none;" />
               </div>
               <div class="vote-btn unhelpful-btn" data-id="${c.id}" data-title="${c.제목}" style="border: 1px solid var(--gray_05,#ddd); border-radius: 8px; display: flex; gap: 8px; align-items: center; justify-content: center; padding: 8px 16px; cursor: pointer; width: 114px; box-sizing: border-box; transition: opacity 0.3s ease;">
                 <span style="font-family: Pretendard; font-size: 14px; font-weight: 500; line-height: 20px; color: var(--ft_default,#313741); white-space: nowrap;">어려워요</span>
-                <img src="Icon/Property 1=Thumb_down, Type=Outline.svg" alt="어려워요" style="width: 24px; height: 24px; pointer-events: none;" />
+                <img src="Icon/Property 1=dislike, Type=Line.svg" alt="어려워요" style="width: 24px; height: 24px; pointer-events: none;" />
               </div>
               <div class="vote-feedback" style="opacity: 0; pointer-events: none; position: absolute; left: 0; top: 0; display: flex; align-items: center; height: 100%; transition: opacity 0.3s ease;">
                 <span style="font-family: Pretendard; font-size: 14px; font-weight: 500; color: var(--purple,#5d21d0);">소중한 의견 감사합니다</span>
