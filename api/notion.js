@@ -77,7 +77,7 @@ export default async function handler(req, res) {
         출처: getValue(["출처", "Link", "URL"]),
         날짜: getValue(["날짜", "Date"])
       };
-      
+
       let finalImg = getValue(["이미지", "썸네일", "Image", "Thumbnail"]);
       if (!finalImg) {
         finalImg = getFallbackImage(resultData.제목);
@@ -89,74 +89,6 @@ export default async function handler(req, res) {
 
     // filter out empty title cases
     const validCases = cases.filter(c => c.제목.trim() !== "");
-
-    // --- Lazy AI Processing ---
-    const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-    // Process max 3 items per request to avoid 10s Vercel timeout
-    const casesToProcess = validCases.filter(c => !c.요약 || c.요약.trim() === "-" || c.요약.trim() === "").slice(0, 3);
-
-    if (GEMINI_API_KEY && casesToProcess.length > 0) {
-      try {
-        const prompt = `You are an expert UX writing assistant. Rewrite the following design cases in Korean.
-For each case, provide:
-1. "요약": A 1-line summary using polite, kind, and friendly tone (존댓말, ~했습니다, 자상하고 친절한 어투). DO NOT use exclamation marks (!).
-2. "문제", "결정", "근거", "결과": Rewrite using easy-to-understand language, active voice, and short sentences.
-
-Return ONLY a JSON array of objects, strictly in the same order, with keys: "id", "요약", "문제", "결정", "근거", "결과".
-
-Data to process:
-${JSON.stringify(casesToProcess.map(c => ({ id: c.id, title: c.제목, problem: c.문제, decision: c.결정, reason: c.근거, result: c.결과 })), null, 2)}
-`;
-
-        const geminiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            contents: [{ parts: [{ text: prompt }] }],
-            generationConfig: { responseMimeType: "application/json" }
-          })
-        });
-
-        if (geminiRes.ok) {
-          const geminiData = await geminiRes.json();
-          const text = geminiData.candidates[0].content.parts[0].text;
-          const processedArray = JSON.parse(text);
-
-          for (const processed of processedArray) {
-            const targetCase = validCases.find(c => c.id === processed.id);
-            if (targetCase) {
-              targetCase.요약 = processed.요약;
-              targetCase.문제 = processed.문제;
-              targetCase.결정 = processed.결정;
-              targetCase.근거 = processed.근거;
-              targetCase.결과 = processed.결과;
-
-              fetch(`https://api.notion.com/v1/pages/${processed.id}`, {
-                method: "PATCH",
-                headers: {
-                  "Authorization": `Bearer ${NOTION_API_KEY}`,
-                  "Notion-Version": "2022-06-28",
-                  "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                  properties: {
-                    "요약": { rich_text: [{ text: { content: processed.요약 } }] },
-                    "문제": { rich_text: [{ text: { content: processed.문제 } }] },
-                    "결정": { rich_text: [{ text: { content: processed.결정 } }] },
-                    "근거": { rich_text: [{ text: { content: processed.근거 } }] },
-                    "결과": { rich_text: [{ text: { content: processed.결과 } }] }
-                  }
-                })
-              }).catch(e => console.error("Notion PATCH failed:", e));
-            }
-          }
-        } else {
-          console.error("Gemini failed:", await geminiRes.text());
-        }
-      } catch (e) {
-        console.error("Gemini API processing failed:", e);
-      }
-    }
 
     // --- Lazy OG Image Scraping ---
     const casesToScrape = validCases.filter(c => !c.이미지 && c.출처).slice(0, 3);

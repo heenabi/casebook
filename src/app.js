@@ -1,4 +1,4 @@
-import { DESIGN_CASES } from "./cases-data.js?v=2";
+import { DESIGN_CASES, STATIC_CASES_COPY } from "./cases-data.js?v=2";
 import mixpanel from "mixpanel-browser";
 import { MIXPANEL_TOKEN } from "./config.js";
 
@@ -262,6 +262,16 @@ const initApp = () => {
       updateActiveMenu(btnHome);
     });
   }
+  
+  const brandLogo = document.getElementById("brand-logo");
+  if (brandLogo) {
+    brandLogo.addEventListener("click", () => {
+      savedView.classList.add("hidden");
+      feedbackView.classList.add("hidden");
+      mainContainer.classList.remove("hidden");
+      updateActiveMenu(btnHome);
+    });
+  }
 
   if (btnGoHomeEmpty) {
     btnGoHomeEmpty.addEventListener("click", () => {
@@ -279,7 +289,7 @@ const initApp = () => {
   // Core Search & Render
   // ==========================================================================
 
-  function performSearch() {
+  async function performSearch() {
     // Increment search count
     const searches = parseInt(localStorage.getItem(KEYS.TOTAL_SEARCHES) || "0") + 1;
     localStorage.setItem(KEYS.TOTAL_SEARCHES, searches.toString());
@@ -394,7 +404,7 @@ const initApp = () => {
     const summaryHtml = "";
 
     const fallbackImage = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgODAwIDQwMCI+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNFRUVFRUUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzIiIGZpbGw9IiM5OTk5OTkiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==";
-    const imageUrl = c.이미지 || fallbackImage;
+    const imageUrl = c.이미지 || (c.출처 ? `https://image.thum.io/get/width/1200/crop/630/${c.출처}` : fallbackImage);
     const bookmarkIconSrc = currentStatus === "adopt" 
       ? "Icon/Property 1=Bookmark, Type=Fill.svg" 
       : "Icon/Property 1=Bookmark, Type=Line.svg";
@@ -408,7 +418,7 @@ const initApp = () => {
           
           <!-- Thumbnail (Left, 35%) -->
           <div style="flex: 3.5; position: relative; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 4 / 3;">
-            <img src="${imageUrl}" alt="${c.제목} 썸네일" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" />
+            <img src="${imageUrl}" alt="${c.제목} 썸네일" loading="lazy" class="lazy-og-image" data-src="${c.출처 || ''}" style="width: 100%; height: 100%; object-fit: cover;" />
             <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(51, 51, 51, 0.50) 0%, rgba(51, 51, 51, 0.15) 100%); pointer-events: none; z-index: 1;"></div>
             <img src="${bookmarkIconSrc}" alt="Bookmark" class="thumbnail-bookmark-btn" data-action="${currentStatus === 'adopt' ? 'cancel' : 'adopt'}" style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; filter: brightness(0) invert(1); cursor: pointer; z-index: 10;" />
           </div>
@@ -532,6 +542,22 @@ const initApp = () => {
       }, 3000);
     }
 
+    // Lazy load OG image if needed
+    const imgEl = card.querySelector('.lazy-og-image');
+    if (imgEl && (!c.이미지 || c.이미지.trim() === "")) {
+      const sourceUrl = imgEl.dataset.src;
+      if (sourceUrl) {
+        fetch(\`/api/og?url=\${encodeURIComponent(sourceUrl)}\`)
+          .then(r => r.json())
+          .then(data => {
+            if (data.image) {
+              c.이미지 = data.image; // cache
+              imgEl.src = data.image;
+            }
+          }).catch(e => console.error(e));
+      }
+    }
+
     return card;
   }
 
@@ -579,14 +605,53 @@ const initApp = () => {
     if (!savedView.classList.contains("hidden")) renderSavedCases();
   }
 
+  function getValidSavedIds() {
+    let savedIds = getSavedIds();
+    let updated = false;
+    let validIds = [];
+
+    savedIds.forEach(id => {
+      let caseData = DESIGN_CASES.find(c => c.id === id || String(c.id) === String(id));
+      
+      // Fallback for UUID mismatch
+      if (!caseData) {
+        const oldStaticCase = STATIC_CASES_COPY.find(c => String(c.id) === String(id));
+        if (oldStaticCase) {
+          // Try exact title match
+          caseData = DESIGN_CASES.find(c => c.제목 === oldStaticCase.제목);
+          
+          // Try fuzzy title match (in case Claude slightly modified it)
+          if (!caseData) {
+            const clean = str => str.replace(/\s+/g, '').toLowerCase();
+            const oldTitle = clean(oldStaticCase.제목);
+            caseData = DESIGN_CASES.find(c => {
+               const newTitle = clean(c.제목);
+               return newTitle.includes(oldTitle) || oldTitle.includes(newTitle);
+            });
+          }
+        }
+      }
+
+      if (caseData) {
+        if (String(caseData.id) !== String(id)) updated = true;
+        validIds.push(caseData.id);
+      } else {
+        updated = true; // Orphaned ID to be removed
+      }
+    });
+
+    validIds = [...new Set(validIds)]; // dedup
+    if (updated) localStorage.setItem(KEYS.SAVED_IDS, JSON.stringify(validIds));
+    return validIds;
+  }
+
   function renderSavedCases() {
     savedCasesList.innerHTML = "";
-    const savedIds = getSavedIds();
+    const savedIds = getValidSavedIds();
     
     let renderedCount = 0;
     savedIds.forEach(id => {
-      // Allow loose matching just in case old integer IDs are stored as strings
-      const caseData = DESIGN_CASES.find(c => c.id === id || String(c.id) === String(id));
+      let caseData = DESIGN_CASES.find(c => String(c.id) === String(id));
       if (!caseData) return;
       renderedCount++;
 
@@ -594,7 +659,7 @@ const initApp = () => {
       savedCard.className = "saved-card";
 
       const fallbackImage = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MTAiIGhlaWdodD0iMjMyIiB2aWV3Qm94PSIwIDAgNDEwIDIzMiI+PHJlY3Qgd2lkdGg9IjQxMCIgaGVpZ2h0PSIyMzIiIGZpbGw9IiNFRUVFRUUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5OTk5OTkiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==";
-      const imageUrl = caseData.이미지 || fallbackImage;
+      const imageUrl = caseData.이미지 || (caseData.출처 ? `https://image.thum.io/get/width/1200/crop/630/${caseData.출처}` : fallbackImage);
       
       const isFail = caseData.제목.includes("실패");
       const badgeText = isFail ? "실패" : "성공";
@@ -623,7 +688,7 @@ const initApp = () => {
 
       savedCard.innerHTML = `
         <div class="saved-card-thumbnail">
-          <img src="${imageUrl}" alt="${caseData.제목} 썸네일" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
+          <img src="${imageUrl}" alt="${caseData.제목} 썸네일" class="lazy-og-image" data-src="${caseData.출처 || ''}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
           <img src="Icon/Property 1=Bookmark, Type=Fill.svg" alt="북마크 해제" class="bookmark-icon btn-remove-saved" data-id="${caseData.id}" style="filter: brightness(0) invert(1); z-index: 2;" />
         </div>
         <div class="saved-card-content">
@@ -656,8 +721,32 @@ const initApp = () => {
         });
       });
 
+      // Lazy load OG image if needed
+      const imgEl = savedCard.querySelector('.lazy-og-image');
+      if (imgEl && (!caseData.이미지 || caseData.이미지.trim() === "")) {
+        const sourceUrl = imgEl.dataset.src;
+        if (sourceUrl) {
+          fetch(\`/api/og?url=\${encodeURIComponent(sourceUrl)}\`)
+            .then(r => r.json())
+            .then(data => {
+              if (data.image) {
+                caseData.이미지 = data.image; // cache
+                imgEl.src = data.image;
+              }
+            }).catch(e => console.error(e));
+        }
+      }
+
       savedCasesList.appendChild(savedCard);
     });
+
+    if (renderedCount === 0) {
+      savedEmptyState.style.display = "flex";
+      savedCasesList.style.display = "none";
+    } else {
+      savedEmptyState.style.display = "none";
+      savedCasesList.style.display = "grid";
+    }
   }
 
   // ==========================================================================
@@ -695,7 +784,7 @@ const initApp = () => {
   }
 
   function updateSavedBadgeCount() {
-    const count = getSavedIds().length;
+    const count = getValidSavedIds().length;
     savedCountBadge.textContent = count;
     if (count === 0) {
       savedCountBadge.style.display = "none";

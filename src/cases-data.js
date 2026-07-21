@@ -406,6 +406,7 @@ let STATIC_CASES = [
   }
 ];
 
+export const STATIC_CASES_COPY = STATIC_CASES;
 export let DESIGN_CASES = STATIC_CASES;
 
 try {
