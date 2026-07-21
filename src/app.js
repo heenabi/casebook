@@ -162,7 +162,7 @@ function generateSavedCardHTML(c) {
   ).join('');
 
   return `
-    <div style="display: flex; flex-direction: column; width: 100%; align-items: flex-start; background: transparent; padding-bottom: 24px; border-bottom: 1px solid var(--gray_06,#eee);">
+    <div style="display: flex; flex-direction: column; width: 100%; align-items: flex-start; background: transparent; padding-bottom: 24px; border-bottom: 1px solid var(--gray_06,#eee); height: 100%; box-sizing: border-box; justify-content: space-between;">
       <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; align-items: flex-start; box-sizing: border-box;">
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
           <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">

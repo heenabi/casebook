@@ -864,6 +864,7 @@ html {
 .saved-card {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .saved-card-thumbnail {
