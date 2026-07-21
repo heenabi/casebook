@@ -91,7 +91,7 @@ function generateCardHTML(c, currentStatus) {
                 <span style="font-family: Pretendard; font-size: 16px; font-weight: 400; line-height: 24px; color: var(--black,#333); white-space: pre-wrap;">${c.결과 || "-"}</span>
               </div>
             </div>
-            <div style="display: flex; gap: 12px; align-items: flex-start; position: relative;" class="reaction-container">
+            <div style="display: flex; gap: 12px; align-items: flex-start; position: relative; height: 42px; overflow: hidden; transition: all 0.4s ease;" class="reaction-container">
               <div class="vote-btn helpful-btn" data-id="${c.id}" data-title="${c.제목}" style="border: 1px solid var(--gray_05,#ddd); border-radius: 8px; display: flex; gap: 8px; align-items: center; justify-content: center; padding: 8px 16px; cursor: pointer; width: 114px; box-sizing: border-box; transition: opacity 0.3s ease;">
                 <span style="font-family: Pretendard; font-size: 14px; font-weight: 500; line-height: 20px; color: var(--ft_default,#313741); white-space: nowrap;">도움돼요</span>
                 <img src="Icon/Property 1=like, Type=Line.svg" alt="도움돼요" style="width: 24px; height: 24px; pointer-events: none;" />
@@ -101,7 +101,7 @@ function generateCardHTML(c, currentStatus) {
                 <img src="Icon/Property 1=dislike, Type=Line.svg" alt="어려워요" style="width: 24px; height: 24px; pointer-events: none;" />
               </div>
               <div class="vote-feedback" style="opacity: 0; pointer-events: none; position: absolute; left: 0; top: 0; display: flex; align-items: center; height: 100%; transition: opacity 0.3s ease;">
-                <span style="font-family: Pretendard; font-size: 14px; font-weight: 500; color: var(--purple,#5d21d0);">소중한 의견 감사합니다</span>
+                <span style="font-family: Pretendard; font-size: 14px; font-weight: 500; color: var(--black,#333);">소중한 의견 감사합니다</span>
               </div>
             </div>
           </div>
@@ -138,6 +138,67 @@ function generateCardHTML(c, currentStatus) {
           </div>
         </div>
 
+      </div>
+    </div>
+  `;
+}
+
+
+function generateSavedCardHTML(c) {
+  const isFail = c.제목.includes("실패");
+  const badgeText = isFail ? "실패" : "성공";
+  const badgeBg = isFail ? "var(--error,#d72a2a)" : "var(--succes,#03a900)";
+
+  const tagsList = [
+    ...getDisplayDomains(c.도메인).map(d => '#' + d),
+    ...[...new Set(
+      (Array.isArray(c.문제카테고리) ? c.문제카테고리 : (c.문제카테고리 ? [c.문제카테고리] : []))
+        .map(cat => getCategoryLabel(cat))
+    )].map(label => '#' + label)
+  ].filter(Boolean);
+
+  const tagsHtml = tagsList.map(tag => 
+    `<div style="display: flex; flex-direction: column; justify-content: center; flex-shrink: 0;"><p style="font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 18px; color: var(--gray_01,#666); margin: 0;">${tag}</p></div>`
+  ).join('');
+
+  return `
+    <div style="display: flex; flex-direction: column; width: 100%; align-items: flex-start; background: transparent; padding-bottom: 24px; border-bottom: 1px solid var(--gray_06,#eee);">
+      <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; align-items: flex-start; box-sizing: border-box;">
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <div style="background: ${badgeBg}; border-radius: 8px; padding: 6px; display: flex; align-items: center; justify-content: center; height: 24px; box-sizing: border-box;">
+              <span style="font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 18px; color: white; white-space: nowrap;">${badgeText}</span>
+            </div>
+            <span style="font-family: Pretendard; font-size: 14px; font-weight: 400; line-height: 20px; color: var(--gray_01,#666); letter-spacing: -0.3px; white-space: nowrap;">${c.회사}</span>
+            <div style="width: 1px; height: 12px; background: var(--gray_04,#ccc); border-radius: 1px; flex-shrink: 0;"></div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              ${tagsHtml}
+            </div>
+          </div>
+          <div class="thumbnail-bookmark-btn" data-id="${c.id}" data-action="cancel" style="cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center;">
+            <img src="Icon/Property 1=Bookmark, Type=Fill.svg" style="width: 24px; height: 24px; pointer-events: none;" alt="보관취소" />
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; width: 100%; gap: 8px; padding-bottom: 16px;">
+          <h4 style="font-family: Pretendard; font-size: 20px; font-weight: 600; line-height: 28px; color: var(--ft_title,#1c1e22); margin: 0; flex: 1; word-break: break-word;">${c.제목}</h4>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 20px; width: 100%; box-sizing: border-box;">
+        <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-family: Pretendard; font-size: 16px; font-weight: 600; line-height: 24px; color: var(--black,#333); white-space: nowrap;">한 줄 요약</span>
+            <span style="font-family: Pretendard; font-size: 16px; font-weight: 400; line-height: 24px; color: var(--black,#333); white-space: pre-wrap;">${c.요약 || "-"}</span>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 4px;">
+            <span style="font-family: Pretendard; font-size: 16px; font-weight: 600; line-height: 24px; color: var(--black,#333); white-space: nowrap;">결과</span>
+            <span style="font-family: Pretendard; font-size: 16px; font-weight: 400; line-height: 24px; color: var(--black,#333); white-space: pre-wrap;">${c.결과 || "-"}</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-start; width: 100%; margin-top: 16px;">
+        <span style="font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 18px; color: var(--gray_01,#666); white-space: nowrap;">${c.날짜 || ""}</span>
       </div>
     </div>
   `;
@@ -519,6 +580,15 @@ function generateCardHTML(c, currentStatus) {
           b.style.opacity = "0";
         });
         feedbackText.style.opacity = "1";
+        
+        setTimeout(() => {
+          container.style.height = "0px";
+          container.style.opacity = "0";
+          container.style.marginTop = "-20px"; // counteracts the gap: 20px of the parent flex
+          setTimeout(() => {
+            container.style.display = "none";
+          }, 400);
+        }, 3000);
       });
     });
 
@@ -624,7 +694,7 @@ function generateCardHTML(c, currentStatus) {
 
       const adoptionLog = getAdoptionLog();
       const currentStatus = adoptionLog[caseData.id];
-      savedCard.innerHTML = generateCardHTML(caseData, currentStatus);
+      savedCard.innerHTML = generateSavedCardHTML(caseData);
       savedCard.dataset.id = caseData.id;
 
       savedCard.querySelectorAll(".thumbnail-bookmark-btn").forEach(btn => {
@@ -640,22 +710,6 @@ function generateCardHTML(c, currentStatus) {
         });
       });
 
-      savedCard.querySelectorAll(".vote-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-          const type = btn.classList.contains("helpful-btn") ? "도움돼요" : "어려워요";
-          mixpanel.track("Reaction Clicked", { type: type, caseId: caseData.id, caseTitle: caseData.제목 });
-          
-          const container = btn.closest(".reaction-container");
-          const allBtns = container.querySelectorAll(".vote-btn");
-          const feedbackText = container.querySelector(".vote-feedback");
-          
-          allBtns.forEach(b => {
-            b.style.pointerEvents = "none";
-            b.style.opacity = "0";
-          });
-          feedbackText.style.opacity = "1";
-        });
-      });
 
       savedCasesList.appendChild(savedCard);
     });
