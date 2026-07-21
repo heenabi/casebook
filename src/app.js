@@ -28,6 +28,120 @@ const initApp = () => {
     "홈":         "효율적인 화면 구성",
     "효율적인":   "효율적인 화면 구성"
   };
+
+function generateCardHTML(c, currentStatus) {
+  const isFail = c.제목.includes("실패");
+  const badgeText = isFail ? "실패" : "성공";
+  const badgeBg = isFail ? "var(--error,#d72a2a)" : "var(--succes,#03a900)";
+
+  const tagsList = [
+    ...getDisplayDomains(c.도메인).map(d => '#' + d),
+    ...[...new Set(
+      (Array.isArray(c.문제카테고리) ? c.문제카테고리 : (c.문제카테고리 ? [c.문제카테고리] : []))
+        .map(cat => getCategoryLabel(cat))
+    )].map(label => '#' + label)
+  ].filter(Boolean);
+
+  const tagsHtml = tagsList.map(tag => 
+    `<div style="display: flex; flex-direction: column; justify-content: center; flex-shrink: 0;"><p style="font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 18px; color: var(--gray_01,#666); margin: 0;">${tag}</p></div>`
+  ).join('');
+
+  const outlinkHtml = c.출처
+    ? `<a href="${c.출처}" target="_blank" class="card-outlink" style="border: 1px solid var(--gray_03,#bbb); border-radius: 16px; padding: 6px 12px; display: flex; align-items: center; justify-content: center; text-decoration: none; flex-shrink: 0;" rel="noopener noreferrer"><span style="font-family: Pretendard; font-size: 14px; font-weight: 400; line-height: 20px; color: var(--black,#333); white-space: nowrap;">출처 바로가기</span></a>`
+    : "";
+
+  const isBookmarked = currentStatus === "adopt";
+  const bookmarkText = isBookmarked ? "이 사례를 레퍼런스로 보관하셨어요." : "이 사례를 레퍼런스로 보관하시겠어요?";
+  const bookmarkBtnText = isBookmarked ? "보관취소" : "보관할게요";
+  const bookmarkIconName = isBookmarked ? "Icon/Property 1=Bookmark, Type=Fill.svg" : "Icon/Property 1=Bookmark, Type=Line.svg";
+
+  return `
+    <div style="display: flex; flex-direction: column; width: 100%; align-items: flex-start; background: transparent;">
+      <div style="display: flex; flex-direction: column; padding: 32px 0 0 0; width: 100%; border-bottom: 1px solid var(--gray_06,#eee); align-items: center;">
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 0 24px; width: 100%; align-items: flex-start; box-sizing: border-box;">
+          <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <div style="background: ${badgeBg}; border-radius: 8px; padding: 6px; display: flex; align-items: center; justify-content: center; height: 24px; box-sizing: border-box;">
+                <span style="font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 18px; color: white; white-space: nowrap;">${badgeText}</span>
+              </div>
+              <span style="font-family: Pretendard; font-size: 16px; font-weight: 400; line-height: 24px; color: var(--gray_01,#666); letter-spacing: -0.3px; white-space: nowrap;">${c.회사}</span>
+              <div style="width: 1px; height: 12px; background: var(--gray_04,#ccc); border-radius: 1px; flex-shrink: 0;"></div>
+              <div style="display: flex; align-items: center; gap: 8px;">
+                ${tagsHtml}
+              </div>
+            </div>
+            <span style="font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 18px; color: var(--gray_01,#666); white-space: nowrap;">${c.날짜 || ""}</span>
+          </div>
+          <div style="display: flex; align-items: center; width: 100%; gap: 8px; padding-bottom: 16px;">
+            <h4 style="font-family: Pretendard; font-size: 20px; font-weight: 600; line-height: 28px; color: var(--ft_title,#1c1e22); margin: 0; flex: 1; word-break: break-word;">${c.제목}</h4>
+            ${outlinkHtml}
+          </div>
+        </div>
+
+        <div style="display: flex; padding: 16px 24px; width: 100%; box-sizing: border-box; align-items: flex-start;">
+          <div style="display: flex; flex-direction: column; gap: 20px; padding: 16px; border: 1px solid var(--gray_05,#ddd); border-radius: 12px; width: 100%; box-sizing: border-box;">
+            <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <span style="font-family: Pretendard; font-size: 16px; font-weight: 600; line-height: 24px; color: var(--black,#333); white-space: nowrap;">한 줄 요약</span>
+                <span style="font-family: Pretendard; font-size: 16px; font-weight: 400; line-height: 24px; color: var(--black,#333); white-space: pre-wrap;">${c.요약 || "-"}</span>
+              </div>
+              <div style="display: flex; flex-direction: column; gap: 4px;">
+                <span style="font-family: Pretendard; font-size: 16px; font-weight: 600; line-height: 24px; color: var(--black,#333); white-space: nowrap;">결과</span>
+                <span style="font-family: Pretendard; font-size: 16px; font-weight: 400; line-height: 24px; color: var(--black,#333); white-space: pre-wrap;">${c.결과 || "-"}</span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 12px; align-items: flex-start; position: relative;" class="reaction-container">
+              <div class="vote-btn helpful-btn" data-id="${c.id}" data-title="${c.제목}" style="border: 1px solid var(--gray_05,#ddd); border-radius: 8px; display: flex; gap: 8px; align-items: center; justify-content: center; padding: 8px 16px; cursor: pointer; width: 114px; box-sizing: border-box; transition: opacity 0.3s ease;">
+                <span style="font-family: Pretendard; font-size: 14px; font-weight: 500; line-height: 20px; color: var(--ft_default,#313741); white-space: nowrap;">도움돼요</span>
+                <img src="Icon/Property 1=Thumb_up, Type=Outline.svg" alt="도움돼요" style="width: 24px; height: 24px; pointer-events: none;" />
+              </div>
+              <div class="vote-btn unhelpful-btn" data-id="${c.id}" data-title="${c.제목}" style="border: 1px solid var(--gray_05,#ddd); border-radius: 8px; display: flex; gap: 8px; align-items: center; justify-content: center; padding: 8px 16px; cursor: pointer; width: 114px; box-sizing: border-box; transition: opacity 0.3s ease;">
+                <span style="font-family: Pretendard; font-size: 14px; font-weight: 500; line-height: 20px; color: var(--ft_default,#313741); white-space: nowrap;">어려워요</span>
+                <img src="Icon/Property 1=Thumb_down, Type=Outline.svg" alt="어려워요" style="width: 24px; height: 24px; pointer-events: none;" />
+              </div>
+              <div class="vote-feedback" style="opacity: 0; pointer-events: none; position: absolute; left: 0; top: 0; display: flex; align-items: center; height: 100%; transition: opacity 0.3s ease;">
+                <span style="font-family: Pretendard; font-size: 14px; font-weight: 500; color: var(--purple,#5d21d0);">소중한 의견 감사합니다</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; align-items: center; width: 100%; padding: 0 24px 16px 24px; box-sizing: border-box;">
+          <div style="display: flex; flex-direction: column; width: 100%;">
+            <div style="display: flex; flex-direction: column; gap: 4px; padding-bottom: 8px;">
+              <span style="font-family: Pretendard; font-size: 14px; font-weight: 600; color: var(--black,#333); line-height: 20px;">문제</span>
+              <span style="font-family: Pretendard; font-size: 14px; font-weight: 400; color: var(--gray_01,#666); line-height: 20px; white-space: pre-wrap;">${c.문제 || "-"}</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px; padding: 8px 0;">
+              <span style="font-family: Pretendard; font-size: 14px; font-weight: 600; color: var(--black,#333); line-height: 20px;">당시 상황</span>
+              <span style="font-family: Pretendard; font-size: 14px; font-weight: 400; color: var(--gray_01,#666); line-height: 20px; white-space: pre-wrap;">${c.상황제약 || "-"}</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px; padding: 8px 0;">
+              <span style="font-family: Pretendard; font-size: 14px; font-weight: 600; color: var(--black,#333); line-height: 20px;">결정</span>
+              <span style="font-family: Pretendard; font-size: 14px; font-weight: 400; color: var(--gray_01,#666); line-height: 20px; white-space: pre-wrap;">${c.결정 || "-"}</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 4px; padding-top: 8px;">
+              <span style="font-family: Pretendard; font-size: 14px; font-weight: 600; color: var(--black,#333); line-height: 20px;">근거</span>
+              <span style="font-family: Pretendard; font-size: 14px; font-weight: 400; color: var(--gray_01,#666); line-height: 20px; white-space: pre-wrap;">${c.근거 || "-"}</span>
+            </div>
+          </div>
+        </div>
+
+        <div style="height: 1px; background: var(--gray_06,#eee); width: 100%;"></div>
+
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 32px; width: 100%; box-sizing: border-box;">
+          <p style="font-family: Pretendard; font-size: 16px; font-weight: 600; line-height: 24px; color: var(--black,#333); letter-spacing: -0.3px; margin: 0; white-space: nowrap;">${bookmarkText}</p>
+          <div class="thumbnail-bookmark-btn bottom-bookmark-btn" data-id="${c.id}" data-action="${isBookmarked ? 'cancel' : 'adopt'}" style="background: var(--purple,#5d21d0); border-radius: 8px; display: flex; gap: 4px; align-items: center; justify-content: center; height: 40px; padding: 16px; cursor: pointer; flex-shrink: 0; box-sizing: border-box;">
+            <img src="${bookmarkIconName}" style="width: 20px; height: 20px; filter: brightness(0) invert(1); pointer-events: none;" alt="보관" />
+            <span style="font-family: Pretendard; font-size: 14px; font-weight: 600; line-height: 20px; color: var(--gray_08,#f9f9f9); white-space: nowrap;">${bookmarkBtnText}</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  `;
+}
+
   function getCategoryLabel(cat) {
     for (const [key, label] of Object.entries(CATEGORY_LABELS)) {
       if (cat.includes(key)) return label;
@@ -371,153 +485,10 @@ const initApp = () => {
     card.dataset.id = c.id;
     card.style.cssText = "width: 100%; display: flex; flex-direction: column; background: transparent;";
 
-    const adoptionLog    = getAdoptionLog();
-    const currentStatus  = adoptionLog[c.id];
+    const adoptionLog = getAdoptionLog();
+    const currentStatus = adoptionLog[c.id];
 
-    // Determine Success/Fail from title
-    const isFail = c.제목.includes("실패");
-    const badgeText = isFail ? "실패" : "성공";
-    const badgeBg = isFail ? "var(--error,#d72a2a)" : "var(--succes,#03a900)";
-
-    const outlinkHtml = c.출처
-      ? `<a href="${c.출처}" target="_blank" class="card-outlink" style="border: 1px solid var(--gray_04); border-radius: 16px; padding: 6px 10px; font-size: 12px; line-height: 18px; color: var(--gray_01); text-decoration: none;" rel="noopener noreferrer">출처 바로가기</a>`
-      : "";
-
-    const headerHtml = `
-      <div style="display: flex; flex-direction: column; gap: 8px; padding: 0 0 16px 0; width: 100%; box-sizing: border-box;">
-        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-          <div style="display: flex; align-items: center; gap: 8px;">
-            <div style="display: flex; align-items: center; justify-content: center; height: 24px; padding: 0 6px; background: ${badgeBg}; color: white; border-radius: 8px; font-size: 12px; line-height: 18px;">${badgeText}</div>
-            <div style="font-size: 16px; font-weight: 400; color: var(--gray_01); letter-spacing: -0.3px; line-height: 24px;">${c.회사}</div>
-          </div>
-          ${outlinkHtml}
-        </div>
-        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 8px;">
-          <h4 style="font-size: 20px; font-weight: 600; letter-spacing: 0px; line-height: 28px; color: var(--black); margin: 0; flex: 1 0 0; word-break: break-word;">${c.제목}</h4>
-          <div style="font-size: 12px; color: var(--gray_01); line-height: 18px; white-space: nowrap;">${c.날짜 || ""}</div>
-        </div>
-      </div>
-    `;
-
-    const titleHtml = "";
-
-    const summaryHtml = "";
-
-    const fallbackImage = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgODAwIDQwMCI+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNFRUVFRUUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzIiIGZpbGw9IiM5OTk5OTkiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==";
-    const isBlockedDomain = c.출처 && (c.출처.includes('brunch.co.kr') || c.출처.includes('notion.site'));
-    const imageUrl = c.이미지 || (c.출처 && !isBlockedDomain ? `https://image.thum.io/get/width/1200/crop/630/${c.출처}` : fallbackImage);
-    const bookmarkIconSrc = currentStatus === "adopt" 
-      ? "Icon/Property 1=Bookmark, Type=Fill.svg" 
-      : "Icon/Property 1=Bookmark, Type=Line.svg";
-
-    // Add bookmark icon over thumbnail
-    const thumbnailDetailsHtml = `
-      <div style="display: flex; flex-direction: column; gap: 16px; padding: 0; width: 100%; box-sizing: border-box;">
-        
-        <!-- Side-by-side Block -->
-        <div style="display: flex; gap: 16px; width: 100%; align-items: stretch;">
-          
-          <!-- Thumbnail (Left, 35%) -->
-          <div style="flex: 3.5; position: relative; border-radius: 12px; overflow: hidden; background: #000; aspect-ratio: 4 / 3;">
-            <img src="${imageUrl}" alt="${c.제목} 썸네일" loading="lazy" class="lazy-og-image" data-src="${c.출처 || ''}" style="width: 100%; height: 100%; object-fit: cover;" />
-            <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(51, 51, 51, 0.50) 0%, rgba(51, 51, 51, 0.15) 100%); pointer-events: none; z-index: 1;"></div>
-            <img src="${bookmarkIconSrc}" alt="Bookmark" class="thumbnail-bookmark-btn" data-action="${currentStatus === 'adopt' ? 'cancel' : 'adopt'}" style="position: absolute; top: 16px; right: 16px; width: 32px; height: 32px; filter: brightness(0) invert(1); cursor: pointer; z-index: 10;" />
-          </div>
-          
-          <!-- Summary/Result Box (Right, 65%) -->
-          <div style="flex: 6.5; background: var(--gray_08, #f8f9fa); border: 1px solid var(--gray_05); border-radius: 12px; padding: 16px; display: flex; flex-direction: column; gap: 20px; box-sizing: border-box; overflow-y: auto;">
-            <!-- 한 줄 요약 -->
-            <div style="display: flex; flex-direction: column; gap: 4px;">
-              <div style="font-family: Pretendard; font-size: 16px; font-weight: 600; line-height: 24px; letter-spacing: -0.3px; color: var(--black, #333);">한 줄 요약</div>
-              <div style="font-family: Pretendard; font-size: 16px; font-weight: 400; line-height: 24px; letter-spacing: -0.3px; color: var(--black, #333); white-space: pre-wrap;">${c.요약 || "-"}</div>
-            </div>
-            <!-- 결과 -->
-            <div style="display: flex; flex-direction: column; gap: 4px;">
-              <div style="font-family: Pretendard; font-size: 16px; font-weight: 600; line-height: 24px; letter-spacing: -0.3px; color: var(--black, #333);">결과</div>
-              <div style="font-family: Pretendard; font-size: 16px; font-weight: 400; line-height: 24px; letter-spacing: -0.3px; color: var(--black, #333); white-space: pre-wrap;">${c.결과 || "-"}</div>
-            </div>
-          </div>
-          
-        </div>
-        
-        <!-- Details Block -->
-        <div style="display: flex; flex-direction: column; width: 100%; word-break: break-word;">
-          <div style="display: flex; flex-direction: column; gap: 4px; padding-bottom: 8px;">
-            <div style="font-weight: 600; font-size: 14px; color: var(--black); line-height: 20px;">문제</div>
-            <div style="font-size: 14px; color: var(--gray_01); line-height: 20px; white-space: pre-wrap;">${c.문제 || "-"}</div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 4px; padding: 8px 0;">
-            <div style="font-weight: 600; font-size: 14px; color: var(--black); line-height: 20px;">당시 상황</div>
-            <div style="font-size: 14px; color: var(--gray_01); line-height: 20px; white-space: pre-wrap;">${c.상황제약 || "-"}</div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 4px; padding: 8px 0;">
-            <div style="font-weight: 600; font-size: 14px; color: var(--black); line-height: 20px;">결정</div>
-            <div style="font-size: 14px; color: var(--gray_01); line-height: 20px; white-space: pre-wrap;">${c.결정 || "-"}</div>
-          </div>
-          <div style="display: flex; flex-direction: column; gap: 4px; padding: 8px 0 0 0;">
-            <div style="font-weight: 600; font-size: 14px; color: var(--black); line-height: 20px;">근거</div>
-            <div style="font-size: 14px; color: var(--gray_01); line-height: 20px; white-space: pre-wrap;">${c.근거 || "-"}</div>
-          </div>
-          <!-- 도메인 + 프로젝트 목적 태그 -->
-          <div style="display: flex; flex-direction: row; align-items: center; gap: 12px; padding-top: 12px; flex-wrap: wrap;">
-            ${[
-              ...getDisplayDomains(c.도메인).map(d => '#' + d),
-              ...[...new Set(
-                (Array.isArray(c.문제카테고리) ? c.문제카테고리 : (c.문제카테고리 ? [c.문제카테고리] : []))
-                  .map(cat => getCategoryLabel(cat))
-              )].map(label => '#' + label)
-            ].filter(Boolean).map(tag =>
-              `<span style="font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 18px; color: var(--Purple, #5D21D0);">${tag}</span>`
-            ).join('')}
-          </div>
-        </div>
-        
-      </div>
-    `;
-
-    // Divider
-    const dividerHtml = "";
-
-    // Adoption buttons
-    let feedbackButtonsHtml = "";
-    if (currentStatus === "adopt") {
-      feedbackButtonsHtml = `
-        <div style="font-size: 16px; font-weight: 600; color: var(--black); letter-spacing: -0.3px; line-height: 24px;">이 사례를 보관함에 저장했어요.</div>
-        <button class="btn btn-small btn-line feedback-btn" data-action="cancel" style="display: flex; gap: 4px; align-items: center; padding: 10px 16px; height: 40px; box-sizing: border-box;">
-          <img src="Icon/Property 1=Bookmark, Type=Fill.svg" alt="" style="width: 20px; height: 20px;">
-          <span style="font-size: 14px; font-weight: 600; line-height: 20px;">채택 취소</span>
-        </button>
-      `;
-    } else {
-      feedbackButtonsHtml = `
-        <div style="font-size: 16px; font-weight: 600; color: var(--black); letter-spacing: -0.3px; line-height: 24px;">이 사례를 레퍼런스로 채택하시겠어요?</div>
-        <button class="btn btn-small btn-fill feedback-btn" data-action="adopt" style="display: flex; gap: 4px; align-items: center; padding: 10px 16px; height: 40px; box-sizing: border-box;">
-          <img src="Icon/Property 1=Bookmark, Type=Line.svg" alt="" style="width: 20px; height: 20px; filter: brightness(0) invert(1);">
-          <span style="font-size: 14px; font-weight: 600; line-height: 20px;">채택할게요</span>
-        </button>
-      `;
-    }
-
-    const actionHtml = `
-      <div class="card-action-area" style="padding: 24px 0 0 0; display: flex; justify-content: space-between; align-items: center; width: 100%; box-sizing: border-box; transition: opacity 0.3s ease;">
-        ${feedbackButtonsHtml}
-      </div>
-    `;
-
-    card.innerHTML = `
-      <div style="border-bottom: 1px solid var(--gray_06); padding: 32px 0; width: 100%; display: flex; flex-direction: column;">
-        ${headerHtml}
-        ${titleHtml}
-        ${summaryHtml}
-        ${thumbnailDetailsHtml}
-        ${dividerHtml}
-        ${actionHtml}
-      </div>
-    `;
-
-    card.querySelectorAll(".feedback-btn").forEach(btn => {
-      btn.addEventListener("click", () => handleFeedback(c.id, btn.dataset.action));
-    });
+    card.innerHTML = generateCardHTML(c, currentStatus);
 
     card.querySelectorAll(".thumbnail-bookmark-btn").forEach(btn => {
       btn.addEventListener("click", () => handleFeedback(c.id, btn.dataset.action));
@@ -532,32 +503,23 @@ const initApp = () => {
       });
     });
 
-    if (currentStatus === "adopt") {
-      // Hide action area after 3 seconds
-      setTimeout(() => {
-        const actionArea = card.querySelector('.card-action-area');
-        if (actionArea) {
-          actionArea.style.opacity = '0';
-          setTimeout(() => { actionArea.style.display = 'none'; }, 300);
-        }
-      }, 3000);
-    }
-
-    // Lazy load OG image if needed
-    const imgEl = card.querySelector('.lazy-og-image');
-    if (imgEl && (!c.이미지 || c.이미지.trim() === "")) {
-      const sourceUrl = imgEl.dataset.src;
-      if (sourceUrl) {
-        fetch(`/api/og?url=${encodeURIComponent(sourceUrl)}`)
-          .then(r => r.json())
-          .then(data => {
-            if (data.image) {
-              c.이미지 = data.image; // cache
-              imgEl.src = data.image;
-            }
-          }).catch(e => console.error(e));
-      }
-    }
+    // Reaction buttons
+    card.querySelectorAll(".vote-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const type = btn.classList.contains("helpful-btn") ? "도움돼요" : "어려워요";
+        mixpanel.track("Reaction Clicked", { type: type, caseId: c.id, caseTitle: c.제목 });
+        
+        const container = btn.closest(".reaction-container");
+        const allBtns = container.querySelectorAll(".vote-btn");
+        const feedbackText = container.querySelector(".vote-feedback");
+        
+        allBtns.forEach(b => {
+          b.style.pointerEvents = "none";
+          b.style.opacity = "0";
+        });
+        feedbackText.style.opacity = "1";
+      });
+    });
 
     return card;
   }
@@ -659,62 +621,16 @@ const initApp = () => {
       const savedCard = document.createElement("div");
       savedCard.className = "saved-card";
 
-      const fallbackImage = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MTAiIGhlaWdodD0iMjMyIiB2aWV3Qm94PSIwIDAgNDEwIDIzMiI+PHJlY3Qgd2lkdGg9IjQxMCIgaGVpZ2h0PSIyMzIiIGZpbGw9IiNFRUVFRUUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQuIGZpbGw9IiM5OTk5OTkiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==";
-      const isBlockedDomain = caseData.출처 && (caseData.출처.includes('brunch.co.kr') || caseData.출처.includes('notion.site'));
-      const imageUrl = caseData.이미지 || (caseData.출처 && !isBlockedDomain ? `https://image.thum.io/get/width/1200/crop/630/${caseData.출처}` : fallbackImage);
-      
-      const isFail = caseData.제목.includes("실패");
-      const badgeText = isFail ? "실패" : "성공";
-      const badgeClass = isFail ? "badge-fail" : "badge-success";
-      
-      // Parse tags: domain (valid only) + categories (deduped)
-      const domainTags = getDisplayDomains(caseData.도메인).map(d => '#' + d);
-      const catTags = [...new Set(
-        (Array.isArray(caseData.문제카테고리)
-          ? caseData.문제카테고리
-          : (caseData.문제카테고리 ? [caseData.문제카테고리] : []))
-          .map(cat => getCategoryLabel(cat))
-      )].map(label => '#' + label);
-      const allTags = [...domainTags, ...catTags].filter(Boolean);
+      const adoptionLog = getAdoptionLog();
+      const currentStatus = adoptionLog[caseData.id];
+      savedCard.innerHTML = generateCardHTML(caseData, currentStatus);
+      savedCard.dataset.id = caseData.id;
 
-      const tagsHtml = allTags.map(t => `
-        <div style="display: flex; align-items: center; justify-content: center;">
-          <p style="font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 18px; color: var(--Purple, #5D21D0);">${t}</p>
-        </div>
-      `).join("");
-
-      const summaryContent = caseData.요약 || "-";
-      const summaryHtml = caseData.출처 
-        ? `<a href="${caseData.출처}" target="_blank" rel="noopener noreferrer" class="saved-card-summary saved-card-summary-link" style="text-decoration: none; color: inherit; display: block; cursor: pointer;">${summaryContent}</a>`
-        : `<div class="saved-card-summary">${summaryContent}</div>`;
-
-      savedCard.innerHTML = `
-        <div class="saved-card-thumbnail">
-          <img src="${imageUrl}" alt="${caseData.제목} 썸네일" class="lazy-og-image" data-src="${caseData.출처 || ''}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; display: block;" />
-          <img src="Icon/Property 1=Bookmark, Type=Fill.svg" alt="북마크 해제" class="bookmark-icon btn-remove-saved" data-id="${caseData.id}" style="filter: brightness(0) invert(1); z-index: 2;" />
-        </div>
-        <div class="saved-card-content">
-          <div style="display: flex; flex-direction: column; gap: 8px;">
-            <div class="saved-card-header">
-              <div class="status-badge ${badgeClass}">${badgeText}</div>
-              <div class="saved-card-company">${caseData.회사}</div>
-            </div>
-            <div class="saved-card-title" style="margin-bottom: 0;">${caseData.제목}</div>
-          </div>
-          ${summaryHtml}
-          <div class="saved-card-meta">
-            <div class="saved-card-tags">
-              ${tagsHtml}
-            </div>
-          </div>
-        </div>
-      `;
-
-      savedCard.querySelectorAll(".btn-remove-saved").forEach(btn => {
-        btn.addEventListener("click", () => handleFeedback(caseData.id, "cancel"));
+      savedCard.querySelectorAll(".thumbnail-bookmark-btn").forEach(btn => {
+        btn.addEventListener("click", () => handleFeedback(caseData.id, btn.dataset.action));
       });
 
-      savedCard.querySelectorAll(".saved-card-summary-link").forEach(link => {
+      savedCard.querySelectorAll(".card-outlink").forEach(link => {
         link.addEventListener("click", () => {
           mixpanel.track('Case_Clicked', {
             case_id: caseData.id,
@@ -723,21 +639,22 @@ const initApp = () => {
         });
       });
 
-      // Lazy load OG image if needed
-      const imgEl = savedCard.querySelector('.lazy-og-image');
-      if (imgEl && (!caseData.이미지 || caseData.이미지.trim() === "")) {
-        const sourceUrl = imgEl.dataset.src;
-        if (sourceUrl) {
-          fetch(`/api/og?url=${encodeURIComponent(sourceUrl)}`)
-            .then(r => r.json())
-            .then(data => {
-              if (data.image) {
-                caseData.이미지 = data.image; // cache
-                imgEl.src = data.image;
-              }
-            }).catch(e => console.error(e));
-        }
-      }
+      savedCard.querySelectorAll(".vote-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const type = btn.classList.contains("helpful-btn") ? "도움돼요" : "어려워요";
+          mixpanel.track("Reaction Clicked", { type: type, caseId: caseData.id, caseTitle: caseData.제목 });
+          
+          const container = btn.closest(".reaction-container");
+          const allBtns = container.querySelectorAll(".vote-btn");
+          const feedbackText = container.querySelector(".vote-feedback");
+          
+          allBtns.forEach(b => {
+            b.style.pointerEvents = "none";
+            b.style.opacity = "0";
+          });
+          feedbackText.style.opacity = "1";
+        });
+      });
 
       savedCasesList.appendChild(savedCard);
     });
