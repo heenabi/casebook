@@ -404,7 +404,8 @@ const initApp = () => {
     const summaryHtml = "";
 
     const fallbackImage = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgODAwIDQwMCI+PHJlY3Qgd2lkdGg9IjgwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiNFRUVFRUUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzIiIGZpbGw9IiM5OTk5OTkiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==";
-    const imageUrl = c.이미지 || (c.출처 ? `https://image.thum.io/get/width/1200/crop/630/${c.출처}` : fallbackImage);
+    const isBlockedDomain = c.출처 && (c.출처.includes('brunch.co.kr') || c.출처.includes('notion.site'));
+    const imageUrl = c.이미지 || (c.출처 && !isBlockedDomain ? `https://image.thum.io/get/width/1200/crop/630/${c.출처}` : fallbackImage);
     const bookmarkIconSrc = currentStatus === "adopt" 
       ? "Icon/Property 1=Bookmark, Type=Fill.svg" 
       : "Icon/Property 1=Bookmark, Type=Line.svg";
@@ -658,8 +659,9 @@ const initApp = () => {
       const savedCard = document.createElement("div");
       savedCard.className = "saved-card";
 
-      const fallbackImage = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MTAiIGhlaWdodD0iMjMyIiB2aWV3Qm94PSIwIDAgNDEwIDIzMiI+PHJlY3Qgd2lkdGg9IjQxMCIgaGVpZ2h0PSIyMzIiIGZpbGw9IiNFRUVFRUUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiM5OTk5OTkiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==";
-      const imageUrl = caseData.이미지 || (caseData.출처 ? `https://image.thum.io/get/width/1200/crop/630/${caseData.출처}` : fallbackImage);
+      const fallbackImage = "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MTAiIGhlaWdodD0iMjMyIiB2aWV3Qm94PSIwIDAgNDEwIDIzMiI+PHJlY3Qgd2lkdGg9IjQxMCIgaGVpZ2h0PSIyMzIiIGZpbGw9IiNFRUVFRUUiLz48dGV4dCB4PSI1MCUiIHk9IjUwJSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQuIGZpbGw9IiM5OTk5OTkiPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==";
+      const isBlockedDomain = caseData.출처 && (caseData.출처.includes('brunch.co.kr') || caseData.출처.includes('notion.site'));
+      const imageUrl = caseData.이미지 || (caseData.출처 && !isBlockedDomain ? `https://image.thum.io/get/width/1200/crop/630/${caseData.출처}` : fallbackImage);
       
       const isFail = caseData.제목.includes("실패");
       const badgeText = isFail ? "실패" : "성공";
