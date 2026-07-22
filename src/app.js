@@ -494,16 +494,29 @@ function generateSavedCardHTML(c) {
       if (welcomeSection) welcomeSection.classList.remove("hidden");
       if (resultsHeaderLeft) resultsHeaderLeft.classList.add("hidden");
       if (rightColumn) rightColumn.classList.add("hidden");
+      mainContainer.classList.remove("has-results"); // 레이아웃 완전 초기화
       if (casesList) casesList.innerHTML = "";
     });
   }
 
   if (btnGoHomeEmpty) {
     btnGoHomeEmpty.addEventListener("click", () => {
+      // 1. 뷰 전환
       savedView.classList.add("hidden");
       feedbackView.classList.add("hidden");
       mainContainer.classList.remove("hidden");
       updateActiveMenu(btnHome);
+
+      // 2. 검색 필터 전체 초기화
+      resetSearchForm();
+
+      // 3. 레이아웃 완전 초기화
+      resultsSection.classList.add("hidden");
+      if (welcomeSection) welcomeSection.classList.remove("hidden");
+      if (resultsHeaderLeft) resultsHeaderLeft.classList.add("hidden");
+      if (rightColumn) rightColumn.classList.add("hidden");
+      mainContainer.classList.remove("has-results");
+      if (casesList) casesList.innerHTML = "";
     });
   }
 
