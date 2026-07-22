@@ -480,10 +480,21 @@ function generateSavedCardHTML(c) {
   const brandLogo = document.getElementById("brand-logo");
   if (brandLogo) {
     brandLogo.addEventListener("click", () => {
+      // 1. 뷰 전환 (보관함/의견 보내기 숨김, 홈 표시)
       savedView.classList.add("hidden");
       feedbackView.classList.add("hidden");
       mainContainer.classList.remove("hidden");
       updateActiveMenu(btnHome);
+
+      // 2. 검색 필터 전체 초기화
+      resetSearchForm();
+
+      // 3. 검색 결과 숨기고 초기 화면(welcome) 복원
+      resultsSection.classList.add("hidden");
+      if (welcomeSection) welcomeSection.classList.remove("hidden");
+      if (resultsHeaderLeft) resultsHeaderLeft.classList.add("hidden");
+      if (rightColumn) rightColumn.classList.add("hidden");
+      if (casesList) casesList.innerHTML = "";
     });
   }
 
