@@ -29,10 +29,43 @@ const initApp = () => {
     "효율적인":   "효율적인 화면 구성"
   };
 
+// 결과 텍스트를 분석해 성공/실패/진행중을 판단하는 함수
+function getResultType(c) {
+  const 결과 = (c.결과 || "").trim();
+  const 제목 = (c.제목 || "").trim();
+  const text = 결과 + " " + 제목;
+
+  // 성공 키워드: 최종 결과가 긍정적인 수치/표현
+  const 성공키워드 = [
+    "상승", "증가", "단축", "향상", "확보", "성공", "줄었", "줄어",
+    "높아", "늘어", "개선됐", "개선되었", "줄이", "낮아졌", "감소"
+  ];
+  // 실패 키워드: 최종 결과가 부정적인 표현 (단, '실패율 감소'처럼 개선 맥락은 제외)
+  const 실패키워드 = [
+    "전환율은 소폭 감소", "전환율 하락", "실패로 끝", "성과 없음",
+    "효과 없음", "효과가 없", "기각", "보장하지 못함"
+  ];
+
+  // 실패 판단 (부정적 결과 명시)
+  for (const kw of 실패키워드) {
+    if (결과.includes(kw)) return "실패";
+  }
+
+  // 성공 판단 (긍정적 결과 명시)
+  for (const kw of 성공키워드) {
+    if (결과.includes(kw)) return "성공";
+  }
+
+  // 명확하지 않으면 진행중
+  return "진행중";
+}
+
 function generateCardHTML(c, currentStatus) {
-  const isFail = c.제목.includes("실패");
-  const badgeText = isFail ? "실패" : "성공";
-  const badgeBg = isFail ? "var(--error,#d72a2a)" : "var(--succes,#03a900)";
+  const resultType = getResultType(c);
+  const badgeText = resultType;
+  const badgeBg = resultType === "성공" ? "var(--succes,#03a900)"
+    : resultType === "실패" ? "var(--error,#d72a2a)"
+    : "var(--gray_02,#999)";
 
   const tagsList = [
     ...getDisplayDomains(c.도메인).map(d => '#' + d),
@@ -145,9 +178,11 @@ function generateCardHTML(c, currentStatus) {
 
 
 function generateSavedCardHTML(c) {
-  const isFail = c.제목.includes("실패");
-  const badgeText = isFail ? "실패" : "성공";
-  const badgeBg = isFail ? "var(--error,#d72a2a)" : "var(--succes,#03a900)";
+  const resultType = getResultType(c);
+  const badgeText = resultType;
+  const badgeBg = resultType === "성공" ? "var(--succes,#03a900)"
+    : resultType === "실패" ? "var(--error,#d72a2a)"
+    : "var(--gray_02,#999)";
 
   const tagsList = [
     ...getDisplayDomains(c.도메인).map(d => '#' + d),
