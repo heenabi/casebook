@@ -113,8 +113,8 @@ function generateCardHTML(c, currentStatus) {
         </div>
 
         <div style="display: flex; gap: 12px; padding: 16px 24px; width: 100%; box-sizing: border-box; align-items: flex-start;">
-          <div style="flex: 1; border-radius: 12px; overflow: hidden; background: var(--gray_06,#eee); display: flex; aspect-ratio: 4/3;">
-            <img src="${c.이미지 || `https://images.unsplash.com/photo-${['1497366216548-37526070297c', '1507238691740-14c27d762074', '1551288049-bebda4e38f71', '1512756290469-ec264b5f81c6', '1558655146-d3937194cb71'][(c.id || 0) % 5]}?auto=format&fit=crop&w=400&h=300&q=80`}" style="width: 100%; height: 100%; object-fit: cover;" alt="Thumbnail" />
+          <div style="flex: 1; border-radius: 12px; border: 1px solid var(--gray_05,#ddd); overflow: hidden; background: var(--gray_06,#eee); display: flex; aspect-ratio: 4/3; box-sizing: border-box;">
+            <img src="${c.이미지 || `https://images.unsplash.com/photo-${['1497366216548-37526070297c', '1507238691740-14c27d762074', '1551288049-bebda4e38f71', '1512756290469-ec264b5f81c6', '1558655146-d3937194cb71'][(String(c.id).charCodeAt(0) || 0) % 5]}?auto=format&fit=crop&w=400&h=300&q=80`}" style="width: 100%; height: 100%; object-fit: cover;" alt="Thumbnail" />
           </div>
           <div style="flex: 2; display: flex; flex-direction: column; gap: 20px; padding: 16px; border: 1px solid var(--gray_05,#ddd); border-radius: 12px; box-sizing: border-box;">
             <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
@@ -544,9 +544,10 @@ function generateSavedCardHTML(c) {
     // Category and Domain multi-select filtering
     let matchedCases = DESIGN_CASES.filter(c => {
       const caseCats = Array.isArray(c.문제카테고리) ? c.문제카테고리 : [c.문제카테고리];
-      const matchCategory = selectedCategories.some(sel => caseCats.some(cat => cat.includes(sel)));
-      const matchDomain = selectedDomains.some(sel => c.도메인 && c.도메인.includes(sel));
-      return matchCategory && matchDomain;
+      const matchCategory = selectedCategories.length === 0 || selectedCategories.some(sel => caseCats.some(cat => cat.includes(sel)));
+      const matchDomain = selectedDomains.length === 0 || selectedDomains.some(sel => c.도메인 && c.도메인.includes(sel));
+      const hasSource = c.출처 && c.출처.trim() !== "";
+      return matchCategory && matchDomain && hasSource;
     });
 
     // Relevance scoring (Query text only)
