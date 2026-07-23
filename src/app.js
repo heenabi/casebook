@@ -60,6 +60,28 @@ function getResultType(c) {
   return "진행중";
 }
 
+function getCompanyLogoUrl(companyName) {
+  const domainMap = {
+    "29CM": "29cm.co.kr",
+    "Growth.Design (자체 실험)": "growth.design",
+    "Stripe": "stripe.com",
+    "강남언니": "gangnamunni.com",
+    "라프텔": "laftel.net",
+    "배달의민족": "baemin.com",
+    "뱅크샐러드": "banksalad.com",
+    "여기어때": "goodchoice.kr",
+    "원티드": "wanted.co.kr",
+    "토스": "toss.im",
+    "토스뱅크": "tossbank.com",
+    "팀스파르타": "spartacodingclub.kr"
+  };
+  const domain = domainMap[companyName];
+  if (domain) {
+    return `https://t3.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://${domain}&size=64`;
+  }
+  return `https://ui-avatars.com/api/?name=${encodeURIComponent(companyName)}&background=random&color=fff&size=64`;
+}
+
 function generateCardHTML(c, currentStatus) {
   const resultType = getResultType(c);
   const badgeText = resultType;
@@ -95,8 +117,8 @@ function generateCardHTML(c, currentStatus) {
         <div style="display: flex; flex-direction: column; gap: 10px; padding: 0 24px; width: 100%; align-items: flex-start; box-sizing: border-box;">
           <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <div style="display: flex; align-items: center; gap: 8px;">
-              <div style="background: ${badgeBg}; border-radius: 8px; padding: 6px; display: flex; align-items: center; justify-content: center; height: 24px; box-sizing: border-box;">
-                <span style="font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 18px; color: white; white-space: nowrap;">${badgeText}</span>
+              <div style="width: 24px; height: 24px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gray_05,#ddd); flex-shrink: 0; background: white;">
+                <img src="${getCompanyLogoUrl(c.회사)}" alt="${c.회사} logo" style="width: 100%; height: 100%; object-fit: cover;">
               </div>
               <span style="font-family: Pretendard; font-size: 16px; font-weight: 400; line-height: 24px; color: var(--gray_01,#666); letter-spacing: -0.3px; white-space: nowrap;">${c.회사}</span>
               <div style="width: 1px; height: 12px; background: var(--gray_04,#ccc); border-radius: 1px; flex-shrink: 0;"></div>
@@ -204,8 +226,8 @@ function generateSavedCardHTML(c) {
       <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; align-items: flex-start; box-sizing: border-box;">
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
           <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
-            <div style="background: ${badgeBg}; border-radius: 8px; padding: 6px; display: flex; align-items: center; justify-content: center; height: 24px; box-sizing: border-box;">
-              <span style="font-family: Pretendard; font-size: 12px; font-weight: 400; line-height: 18px; color: white; white-space: nowrap;">${badgeText}</span>
+            <div style="width: 24px; height: 24px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gray_05,#ddd); flex-shrink: 0; background: white;">
+              <img src="${getCompanyLogoUrl(c.회사)}" alt="${c.회사} logo" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
             <span style="font-family: Pretendard; font-size: 14px; font-weight: 400; line-height: 20px; color: var(--gray_01,#666); letter-spacing: -0.3px; white-space: nowrap;">${c.회사}</span>
             <div style="width: 1px; height: 12px; background: var(--gray_04,#ccc); border-radius: 1px; flex-shrink: 0;"></div>
