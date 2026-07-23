@@ -91,7 +91,7 @@ function generateCardHTML(c, currentStatus) {
 
   return `
     <div style="display: flex; flex-direction: column; width: 100%; align-items: flex-start; background: transparent;">
-      <div style="display: flex; flex-direction: column; padding: 32px 0 0 0; width: 100%; border-bottom: 1px solid var(--gray_06,#eee); align-items: center;">
+      <div style="display: flex; flex-direction: column; padding: 32px 0 0 0; width: 100%; align-items: center;">
         <div style="display: flex; flex-direction: column; gap: 10px; padding: 0 24px; width: 100%; align-items: flex-start; box-sizing: border-box;">
           <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <div style="display: flex; align-items: center; gap: 8px;">
@@ -112,8 +112,11 @@ function generateCardHTML(c, currentStatus) {
           </div>
         </div>
 
-        <div style="display: flex; padding: 16px 24px; width: 100%; box-sizing: border-box; align-items: flex-start;">
-          <div style="display: flex; flex-direction: column; gap: 20px; padding: 16px; border: 1px solid var(--gray_05,#ddd); border-radius: 12px; width: 100%; box-sizing: border-box;">
+        <div style="display: flex; gap: 12px; padding: 16px 24px; width: 100%; box-sizing: border-box; align-items: flex-start;">
+          <div style="flex: 1; border-radius: 12px; overflow: hidden; background: var(--gray_06,#eee); display: flex; aspect-ratio: 4/3;">
+            <img src="${c.이미지 || `https://images.unsplash.com/photo-${['1497366216548-37526070297c', '1507238691740-14c27d762074', '1551288049-bebda4e38f71', '1512756290469-ec264b5f81c6', '1558655146-d3937194cb71'][(c.id || 0) % 5]}?auto=format&fit=crop&w=400&h=300&q=80`}" style="width: 100%; height: 100%; object-fit: cover;" alt="Thumbnail" />
+          </div>
+          <div style="flex: 2; display: flex; flex-direction: column; gap: 20px; padding: 16px; border: 1px solid var(--gray_05,#ddd); border-radius: 12px; box-sizing: border-box;">
             <div style="display: flex; flex-direction: column; gap: 16px; width: 100%;">
               <div style="display: flex; flex-direction: column; gap: 4px;">
                 <span style="font-family: Pretendard; font-size: 16px; font-weight: 600; line-height: 24px; color: var(--black,#333); white-space: nowrap;">한 줄 요약</span>
@@ -197,7 +200,7 @@ function generateSavedCardHTML(c) {
   ).join('');
 
   return `
-    <div style="display: flex; flex-direction: column; width: 100%; align-items: flex-start; background: transparent; padding-bottom: 24px; border-bottom: 1px solid var(--gray_06,#eee); height: 100%; box-sizing: border-box; justify-content: space-between;">
+    <div style="display: flex; flex-direction: column; width: 100%; align-items: flex-start; background: transparent; padding-bottom: 24px; height: 100%; box-sizing: border-box; justify-content: space-between;">
       <div style="display: flex; flex-direction: column; gap: 10px; width: 100%; align-items: flex-start; box-sizing: border-box;">
         <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
           <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
@@ -607,7 +610,7 @@ function generateSavedCardHTML(c) {
     const card = document.createElement("div");
     card.className = "case-card";
     card.dataset.id = c.id;
-    card.style.cssText = "width: 100%; display: flex; flex-direction: column; background: transparent;";
+    card.style.cssText = "width: 100%; display: flex; flex-direction: column; background: var(--white, #fff);";
 
     const adoptionLog = getAdoptionLog();
     const currentStatus = adoptionLog[c.id];
