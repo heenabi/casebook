@@ -78,7 +78,7 @@ export default async function handler(req, res) {
         날짜: getValue(["날짜", "Date"])
       };
 
-      let finalImg = getValue(["이미지", "썸네일", "Image", "Thumbnail"]);
+      let finalImg = getValue(["이미지", "썸네일", "썸네일 이미지", "Image", "Thumbnail"]);
       if (!finalImg) {
         finalImg = getFallbackImage(resultData.제목);
       }
