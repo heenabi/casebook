@@ -112,7 +112,7 @@ function generateCardHTML(c, currentStatus) {
           </div>
         </div>
 
-        <div style="display: flex; gap: 12px; padding: 16px 24px; width: 100%; box-sizing: border-box; align-items: flex-start;">
+        <div style="display: flex; gap: 12px; padding: 16px 24px; width: 100%; box-sizing: border-box; align-items: stretch;">
           <div style="flex: 1; border-radius: 12px; border: 1px solid var(--gray_05,#ddd); overflow: hidden; background: var(--gray_06,#eee); display: flex; aspect-ratio: 4/3; box-sizing: border-box;">
             <img src="${c.이미지 || `https://images.unsplash.com/photo-${['1497366216548-37526070297c', '1507238691740-14c27d762074', '1551288049-bebda4e38f71', '1512756290469-ec264b5f81c6', '1558655146-d3937194cb71'][(String(c.id).charCodeAt(0) || 0) % 5]}?auto=format&fit=crop&w=400&h=300&q=80`}" style="width: 100%; height: 100%; object-fit: cover;" alt="Thumbnail" />
           </div>
