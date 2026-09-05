@@ -1,61 +1,6 @@
 // 실제 디자인 사례 DB — CSV에서 변환된 정적 데이터 (총 22건)
 let STATIC_CASES = [
   {
-    "id": "3b23fa5c-360a-81cd-92c4-cc17a72bd431",
-    "제목": "\"토스 참 쪼잔하다\"는 유저 말에 1억을 태운 이유",
-    "회사": "토스",
-    "도메인": "핀테크",
-    "문제카테고리": [
-      "광고 UX"
-    ],
-    "상황제약": "만보기는 유저 수만큼 리워드 비용이 비례 증가하는 구조라 광고 수익화 없이는 서비스 존폐가 걸린 상황이었음",
-    "요약": "포인트 받고 광고를 강제로 보게 하는 방식이 통하지 않는다는 걸 뼈아프게 확인한 사례예요. 광고를 \"기다리는 시간\"에 복권 같은 기대감을 얹었더니 그제야 수익과 사용자 경험을 동시에 잡았습니다.",
-    "문제": "만보기 서비스의 지속가능성을 위해 광고 수익화가 필요했지만, 포인트 지급 직후 광고를 강제 시청시키는 방식은 첫날 100만 명이 써볼 만큼 반응은 있었으나 재사용으로 이어지지 않았음. 커피쿠폰·상품권 등 리워드를 7개월간 다양하게 바꿔봐도 반응 개선 없이 실패 지속",
-    "결정": "\"어떻게 광고를 보게 하지?\" 대신 \"어떻게 기다리는 시간을 가치있게 만들지?\"로 질문을 전환. 광고를 보는 대기시간에 최대 100만 원 당첨 복권 형태의 기대감을 부여하고, \"꽝\" 없이 최소 2원은 보장하도록 설계",
-    "근거": "사용자 인터뷰에서 참가자가 광고 노출 타이밍에 앱을 스와이프해 끄고 \"광고 안 보고도 포인트 받는 법\"을 오히려 알려준 사건이 결정적 계기. 강제 시청은 광고 매출로 이어지지 않는다는 걸 명확히 확인",
-    "결과": "사용자에게 제공하는 리워드를 뛰어넘는 광고 수익 창출.",
-    "출처": "https://toss.tech/article/undercover-silo-3",
-    "날짜": "2025-07-21",
-    "이미지": "https://static.toss.im/photos/undercover_silo_behind_2.png"
-  },
-  {
-    "id": "3b23fa5c-360a-814d-96cb-c1d34eec1921",
-    "제목": "OTT에선 처음 보는 재화모델, UX로 어떻게 풀었을까?",
-    "회사": "라프텔",
-    "도메인": "글로벌, 콘텐츠",
-    "문제카테고리": [
-      "광고 UX"
-    ],
-    "상황제약": "동남아 시장은 광고 기반 무료 시청(AVOD) 선호도가 높고, 건당 결제(TVOD) 판권 단가가 더 비싸 대안 BM이 필요했던 비즈니스 제약",
-    "요약": "국내 OTT에서 낯선 \"광고 시청 후 재화 획득 → 스킵\" 모델을 도입하며 사용자가 헷갈리지 않도록 단계적으로 안내한 사례예요. 정량 지표 대신 사용자가 기능을 자연스럽게 받아들였다는 정성적 반응으로 성과를 확인했습니다.",
-    "문제": "글로벌 서비스 수익화를 위해 \"광고 미리보기로 재화 획득 → 시청 중 광고 스킵\"이라는 국내 OTT에서 생소한 재화(BM) 모델을 도입해야 했는데, 낯선 UX라 사용자가 헷갈릴 위험이 있었음",
-    "결정": "신규 유저에게 재화 10개 무료 제공, 진입 전 바텀시트 안내, 마이 재화 화면 툴팁, 재화 차감 애니메이션 추가 등으로 단계적으로 학습시키는 방식을 선택. 어뷰징 방지를 위해 재화 지급을 1시간당 1회·최대 6회로 제한",
-    "근거": "네이버웹툰 쿠키형 선지불 모델 대신 시청 중 차감 방식을 택한 이유를 판권 단가 구조 등 비즈니스 논리로 설명",
-    "결과": "정성적. \"사용자들이 기능을 잘 이해했고 자연스럽게 재화를 사용했다\"는 서술만 있고 구체적 수치는 제시되지 않음",
-    "출처": "https://blog.laftel.net/post/33",
-    "날짜": "2025-06-09",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/e4d3f399-ac1a-4620-9c80-e5b4593d003c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-08-04_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_1.59.28.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=4abe076c221dda1fe6a2cfd3e43c028e7738fc257a6dee458d72001485b9a8b3&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
-  },
-  {
-    "id": "3a43fa5c-360a-814d-9993-f39a626ac5eb",
-    "제목": "가입은 쉽게, 로그인은 실패 없이! 휴대폰번호로 계속하기",
-    "회사": "배달의민족",
-    "도메인": "커머스",
-    "문제카테고리": [
-      "가입",
-      "인증/본인확인"
-    ],
-    "상황제약": "카카오·네이버 로그인 대비 자체 가입수단 경쟁력이 필요한 상황.",
-    "요약": "이메일 가입 대신 휴대폰번호 패스워드리스 방식을 도입해 가입과 로그인을 동시에 개선한 사례예요. 비밀번호를 없앴더니 가입도 빨라지고 로그인 실패도 크게 줄었습니다.",
-    "문제": "이메일 기반 가입 전환율이 30%대에 머물러 있음. 로그인 실패와 계정복구 요청이 잦음.",
-    "결정": "이름·생년월일·휴대폰번호만으로 인증하는 패스워드리스 가입·로그인 방식 출시.",
-    "근거": "비밀번호 분실이나 오기입이 로그인 실패의 주요 원인이라는 가설.",
-    "결과": "가입 전환율 30%대에서 70%대로 상승(네이버 로그인보다 높음). 가입 소요시간 절반 단축, 로그인 실패율 48% 감소, 계정복구 시도 35% 감소.",
-    "출처": "https://techblog.woowahan.com/15895/",
-    "날짜": "2024-02-27",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/95a1ffdd-1250-4a08-a01e-097503907850/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=e0d76541ce9f6daa3809cab63c3ae69f0bb360aa055cbf5c055da8ed2a370044&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
-  },
-  {
     "id": "3a23fa5c-360a-8173-9909-deea0c4b82ff",
     "제목": "여기어때 구매 유도 쿠폰 UI 개선 실험",
     "회사": "여기어때",
@@ -63,15 +8,15 @@ let STATIC_CASES = [
     "문제카테고리": [
       "결제"
     ],
-    "상황제약": "상품 상세 페이지 상단 영역에서 서로 다른 시각적 스타일로 A/B 테스트 진행.",
-    "요약": "쿠폰 버튼의 시각적 스타일만 바꿔서 클릭률을 끌어올린 사례예요. 시각적 개선만으로도 효과가 있는지 직접 실험으로 검증했습니다.",
-    "문제": "결제 단계에서 혜택을 사용자가 직관적으로 인지하기 어려움.",
-    "결정": "상품 상세 페이지 상단의 쿠폰 버튼 시각적 스타일을 개선해 혜택을 더 빠르게 인지하도록 변경.",
-    "근거": "사용자는 구매 전 가격·혜택·리뷰를 중요하게 생각한다는 데이터를 사전 확인. 시각적 개선의 효과를 실험으로 직접 검증.",
-    "결과": "선착순 할인 쿠폰 영역 클릭률 17% 상승, 쿠폰 받기 영역 16% 상승.",
+    "상황제약": "상품 상세 페이지 상단(ATF) 영역, 서로 다른 시각적 스타일(타입)로 구성된 A/B 테스트",
+    "요약": "",
+    "문제": "결제 단계에서 서로 다른 다운로드 없이는 적용이 안 되어 사용자가 혜택을 직관적으로 인지하기 어려움",
+    "결정": "상품 상세 페이지 ATF 영역에서 쿠폰 버튼의 시각적 스타일(타입)을 개선해 혜택을 더 빠르게 인지하도록 변경",
+    "근거": "사용자는 구매 전 가격·혜택·리뷰를 중요하게 생각한다는 정성·정량 데이터를 사전 확인. \"시각적 개선만으로 클릭률에 영향을 줄까?\"라는 디자이너의 의문을 실험으로 직접 검증",
+    "결과": "Test group C 기준 선착순 할인 쿠폰 영역 클릭률 +17%, 쿠폰 받기 영역 +16%",
     "출처": "https://techblog.gccompany.co.kr/사소한-영역이라도-개선이-필요해요-2fe7653dcf1e",
-    "날짜": "2023-04-28",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/4c84a8ff-b90b-462d-acd3-029405a3e6c0/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=c44d9245e72ef0d16bbe3c4be9bccfae156b81fa80cf744420d0f38915452c01&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "날짜": "2023-01-01",
+    "이미지": "./images/3a23fa5c-360a-8173-9909-deea0c4b82ff.png"
   },
   {
     "id": "3a23fa5c-360a-81c9-94b7-fd06c4a385a5",
@@ -81,15 +26,15 @@ let STATIC_CASES = [
     "문제카테고리": [
       "결제"
     ],
-    "상황제약": "Stripe 플랫폼 전체 가맹점을 대상으로 한 대규모 실험.",
-    "요약": "카드 외 결제수단을 늘려도 전환율이 떨어지지 않는다는 걸 대규모 실험으로 증명한 사례예요. 오히려 매출과 전환율 모두 올랐습니다.",
-    "문제": "카드 외 결제수단을 늘리면 로그인·수기입력 등 마찰이 늘어 전환이 떨어질 수 있다는 우려.",
-    "결정": "결제 화면에 카드 외 관련 결제수단을 최소 1개 이상 동적으로 노출.",
-    "근거": "저비용 결제수단이 마찰을 늘려 전환을 저해할 거라는 우려와 달리 실제 데이터는 다르게 나타남.",
-    "결과": "가맹점 평균 매출 12% 상승, 전환율 7.4% 상승.",
+    "상황제약": "Stripe 플랫폼 전체 가맹점 대상 대규모 실험",
+    "요약": "",
+    "문제": "카드 외 결제수단(계좌이체 등)을 늘리면 로그인·수기입력 등 마찰이 늘어 전환이 떨어질 수 있다는 우려",
+    "결정": "결제 화면에 카드 외 관련 결제수단을 최소 1개 이상 동적으로 노출",
+    "근거": "계좌이체 등 저비용 수단이 마찰을 늘려 전환을 저해할 거라는 우려와 달리, 실제로는 전환을 저해하지 않거나 오히려 높이는 경우가 있다는 데이터 확인",
+    "결과": "가맹점 평균 매출 +12%, 전환율 +7.4%",
     "출처": "https://stripe.com/blog/testing-the-conversion-impact-of-50-plus-global-payment-methods",
-    "날짜": "2025-04-10",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/90263b3d-c81a-45c0-b9f0-13ef7fd925ca/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=652aa19e4cfce2ccf53cf193c82cdc88e88a7a5f4d89bca763f746a913cb13a4&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "날짜": "2025-01-01",
+    "이미지": "./images/3a23fa5c-360a-81c9-94b7-fd06c4a385a5.png"
   },
   {
     "id": "3a23fa5c-360a-81e3-be23-e7e212e032e5",
@@ -99,33 +44,33 @@ let STATIC_CASES = [
     "문제카테고리": [
       "인트로"
     ],
-    "상황제약": "약 3개월간 플랫폼 전반의 카드 UI 통일 작업으로 진행.",
-    "요약": "상품 카드 UI를 30번이나 반복 개선해 성과를 낸 사례예요. 훑어보는 화면이라도 구매 결정에 큰 영향을 준다는 걸 확인했습니다.",
-    "문제": "상품 카드 UI가 플랫폼 전체에서 일관성이 없고 구매 결정에 미치는 영향이 최적화되지 않음.",
-    "결정": "AS-IS·TO-BE를 정의하고 A/B 테스트로 검증하며 카드 UI를 30회 반복 개선.",
-    "근거": "사용자가 깊이 주의를 기울이지 않고 빠르게 훑어보는 화면이라도 구매 결정에 중요한 역할을 한다는 가설.",
-    "결과": "구매전환율과 매출이 상당히 상승(구체 수치 비공개). 사내 최고 임팩트상 수상.",
+    "상황제약": "약 3개월간 진행, 플랫폼 전반에 걸친 카드 UI 통일 작업",
+    "요약": "",
+    "문제": "상품 카드(셀러카드) UI가 플랫폼 전체에서 일관성이 없고, 구매 결정에 미치는 영향이 최적화되지 않았음",
+    "결정": "AS-IS/TO-BE를 정의하고 A/B 테스트로 검증하며 카드 UI를 30회 반복 개선",
+    "근거": "사용자가 깊이 주의를 기울이지 않고 빠르게 훑는 퍼널이라도 구매 결정에 중요한 역할을 한다는 가설",
+    "결과": "구매전환율과 매출 상당한 수치로 상승 (구체 % 비공개, 회사 내 \"Biggest Impact상\" 수상)",
     "출처": "https://techblog.gccompany.co.kr/30번-실험-끝에-성공한-여기어때-상품-카드-ui-개선기-1c30ab8f0dfc",
-    "날짜": "2023-10-20",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/041a4900-d25a-4a36-8df9-2b5fbb72f296/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=1962d2a7a3ebc1f1bc2e234591288d0ff482f4a2565bb07976aa8d77bd5e4fff&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "날짜": "2023-01-01",
+    "이미지": "./images/3a23fa5c-360a-81e3-be23-e7e212e032e5.png"
   },
   {
     "id": "3a23fa5c-360a-81ec-a616-f2f9be9f9cf2",
     "제목": "직장인 월급복권 이벤트: 리워드 기반 가입 유도",
-    "회사": "원티드",
-    "도메인": "HR",
+    "회사": "원티드(Wantedlab)",
+    "도메인": "SaaS, B2C",
     "문제카테고리": [
       "가입"
     ],
-    "상황제약": "정규 프로젝트가 아닌 사이드 프로젝트. 정규 PM 없이 6인 임시 TF로 진행.",
-    "요약": "소규모 임시 TF로 가입 유도 이벤트를 만든 사례예요. 반응은 좋았지만 유입된 가입자의 품질에는 한계가 있었다는 걸 스스로 밝힌 점이 눈에 띄어요.",
-    "문제": "가입자 트렌드가 정체되어 있어 대규모 유입을 일으킬 이벤트가 필요했음.",
-    "결정": "실시간 당첨 노출과 공유 시 복권 추가 지급 등 바이럴 장치 설계. 사행성 우려로 슬롯머신 대신 클로버 긍기 메타포 채택. 정식 UT 대신 프로토타입으로 약식 검증.",
-    "근거": "유저 저니맵을 먼저 작성해 아이디어를 수렴. 사행성이 브랜드 이미지에 부정적 영향을 줄 수 있다는 우려가 메타포 선택의 핵심 근거.",
-    "결과": "예상보다 큰 반향과 휴면 유저 활성화 등 긍정적 지표(정성적). 다만 이 방식으로 유입된 가입자는 구직 퍼널 전환율이 낮았다는 한계를 스스로 밝힘.",
+    "상황제약": "정규 프로젝트가 아닌 사이드 프로젝트, 정규 PM 부재로 마케터와 디자이너가 기획 업무 분담, 그로스·마케팅·디자인·프론트·코어 6인 임시 TF 구성",
+    "요약": "",
+    "문제": "가입자 트렌드가 정체되어 있어 대규모 유입을 일으킬 이벤트가 필요했음",
+    "결정": "실시간 당첨 노출, 공유 시 복권 추가 지급 등 바이럴 장치 설계. 사행성 우려로 슬롯머신 대신 '클로버 긁기' 메타포 채택. 시간 부족으로 정식 UT 대신 프로토타입 약식 검증. 라이트/다크 모드 지원 방침을 깨고 이벤트 특성상 다크모드로 고정",
+    "근거": "유저 저니맵을 선(先)작성해 초기 아이디어 수렴에 활용. '사행성이 브랜드 이미지에 부정적 영향'이라는 우려가 메타포 선택의 핵심 근거",
+    "결과": "정성적 — 예상보다 큰 반향, 휴면 유저 활성화 등 다양한 지표에서 긍정적 효과. 단, 이 방식으로 유입된 가입자는 통상 가입자 대비 구직 관련 퍼널 전환율이 낮았다는 한계를 스스로 밝힘",
     "출처": "https://brunch.co.kr/@wanteddesign/26",
     "날짜": "2023-07-20",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/d6589f12-e6cd-44cc-864c-b409bebf2c8b/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-07-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.58.01.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=79a476f31f81bf84c2b7872641d3549c160966c1b203a4998d7be138157fc95b&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "./images/3a23fa5c-360a-81ec-a616-f2f9be9f9cf2.png"
   },
   {
     "id": "39b3fa5c-360a-809a-863b-f1f2e8f67b24",
@@ -136,34 +81,34 @@ let STATIC_CASES = [
       "홈",
       "정보구조"
     ],
-    "상황제약": "B마트가 편의점 대용 이미지에서 장보기 플랫폼으로 포지션을 전환하려는 시점.",
-    "요약": "B마트 테마관을 장보기 플랫폼답게 개편해 탐색 편의성을 높인 사례예요. 사용자 리서치에서 나온 목소리를 3단계에 걸쳐 반영했습니다.",
-    "문제": "신선관·뷰티관 오픈 후 카테고리 미리보기가 스크롤 깊숙이 있고 세분화도 안 돼 탐색이 불편하다는 의견 다수.",
-    "결정": "1단계, 상품을 더 보여주는 컴포넌트로 교체하고 카테고리 구좌 추가. 2·3단계, 규격 통일하고 카테고리 필터 추가.",
-    "근거": "리서치에서 \"먼저 담고 추가 탐색한다\", \"세분화된 카테고리가 안 보인다\"는 피드백이 반복됨.",
-    "결과": "3단계 개선 후 테마관 내 반응률 약 11% 증가, 주문 기기 수 약 15% 증가.",
+    "상황제약": "B마트가 \"급할 때 쓰는 편의점 대용\" 이미지에서 \"장보기 플랫폼\"으로 포지션을 전환하려는 시점(신선관 2023.3 오픈, 뷰티관 6월 오픈)",
+    "요약": "",
+    "문제": "신선관·뷰티관 오픈 후 사용자 리서치 결과, 카테고리 미리보기 구좌가 스크롤 깊숙이 있고 세분화도 안 돼 있어 \"테마관에 뭐가 있는지 몰라서 탐색이 불편하다\"는 의견 다수 확인",
+    "결정": "Phase 1: 상품을 더 많이 보여주는 컴포넌트로 교체 + 다양한 상품군을 보여줄 카테고리 구좌 추가.\n Phase 2·3: 신선관·뷰티관 규격 통일 + 컴포넌트에 카테고리 필터 추가",
+    "근거": "사용자 리서치에서 \"먼저 찾고 싶은 상품을 담고 추가 탐색한다\", \"세분화된 카테고리가 안 보여서 원하는 상품을 찾기 어렵다\"는 반복된 피드백을 데이터 가설로 전환",
+    "결과": "3단계 개선 후 테마관 내 반응률 약 11% 증가, 주문 기기 수 약 15% 증가",
     "출처": "https://techblog.woowahan.com/18719/",
     "날짜": "2024-07-30",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/0ce27ae2-9967-49e5-9c59-5ee1b7e740f7/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=8999dc9725681d4235e406a02905728403e99e81165b244cc561ede45c37f139&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "https://techblog.woowa.in/wp-content/uploads/2024/07/B마트-테마관-개선기-오픈이-끝_-No-함께하는-동료들과-프로덕트-꾸준히-발전시키기.png"
   },
   {
     "id": "39b3fa5c-360a-80ab-9da7-fb7f85ebc726",
     "제목": "배민 온라인 입점신청 개선: OCR 도입과 퍼널 축소",
     "회사": "배달의민족",
-    "도메인": "커머스, B2B",
+    "도메인": "커머스, B2B, B2C",
     "문제카테고리": [
       "정보입력",
       "가입"
     ],
-    "상황제약": "오프라인 영업매니저 방식과 병행 운영 중. PM·디자이너·개발자가 각자 다른 경로로 문제를 인지.",
-    "요약": "입점신청 과정에 OCR과 챗봇형 UI를 도입해 절차를 크게 줄인 사례예요. 다만 사용성이 좋아진 것과 실제 입점 완료는 다른 문제였다는 반전이 있습니다.",
-    "문제": "온라인 입점신청 진입자의 50%가 첫 단계인 사업자정보 입력에서 이탈. 서류 정보를 전부 수기로 입력해야 하는 게 허들.",
-    "결정": "사업자등록증에 OCR API 도입해 수기 입력 제거. 6개 퍼널을 4개로 축소. 입력폼 대신 챗봇형 UI 채택. 이탈 후 재진입 시 입력값 유지.",
-    "근거": "OCR 도입 전 기존 서류 1,000여 건으로 정확도 사전 검증. UT 결과 챗봇형이 오류율과 심리적 부담 모두 낮음.",
-    "결과": "10분 이내 완료 비율 24.2%p 증가, 평균 소요시간 5.9시간 감소. 다만 최종 입점 완료율은 오히려 1.2%p 감소.",
+    "상황제약": "오프라인 영업매니저를 통한 입점 방식과 병행 운영 중이라, 온라인 입점 활성화 시 오프라인 영업 비용 절감 효과도 걸려있음. PM·디자이너·프론트엔드 개발자 3인이 각자 다른 경로로 문제를 인지(데이터 대시보드/직접 사용해보고 UT/유저 로그 분석)",
+    "요약": "",
+    "문제": "온라인 입점신청 진입자의 50%가 첫 단계인 '사업자정보 입력'에서 이탈. 사업자등록증·영업신고증 정보를 전부 수기로 입력해야 하는 게 큰 허들",
+    "결정": "① 사업자등록증·영업신고증에 네이버 클로바 OCR API 도입해 수기 입력 제거 \n② 6개 퍼널을 4개로 축소(만나서결제·주문접수채널 설정을 입점 후로 이동, 통장사본 제출을 계좌 조회 API로 대체) \n③ 인터페이스는 A안(입력폼 압축) vs B안(대화형 챗봇 UI) 중 UT를 통해 B안(챗봇) 채택 \n④ 이탈 후 재진입 시 대화 내용·입력값을 유지하도록 상태 관리",
+    "근거": "OCR 도입 전 기존 입점 사장님 1,000여 명의 서류로 사전 정확도 검증. 디자이너는 커뮤니티 피드백(\"아프니까 사장이다\") 데스크리서치 + 경쟁사 분석 + 사내 UT로 \"과정이 길고 용어가 어렵다\"는 문제를 재확인. UT 결과 챗봇형이 오류 발생률도 낮고 심리적 부담도 적다는 인사이트 확보",
+    "결과": "10분 이내 완료 비율 24.2%p 증가, 평균 소요시간 5.9시간 감소(60분 초과 제외 기준). 그러나 정작 최종 입점 완료율은 오히려 1.2%p 감소 — \"사용성 개선만으로는 전환율을 못 높인다\"는 반직관적 결과",
     "출처": "https://techblog.woowahan.com/20627/",
     "날짜": "2024-12-10",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/a40b63cf-0bb6-45ec-84bd-454e2358b7d4/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=11da6769cebd9c360cd8cd11902c9f724e7ca746ebeaf2d112bf69a385b16af9&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "https://techblog.woowa.in/wp-content/uploads/2024/12/PM-디자이너-개발자가-함께한-배달의민족-입점-과정-개선기.png"
   },
   {
     "id": "39b3fa5c-360a-80d8-beda-e79972e544ce",
@@ -173,15 +118,34 @@ let STATIC_CASES = [
     "문제카테고리": [
       "결제"
     ],
-    "상황제약": "라이더 1회 배달 건수 제한으로 최소주문금액 정책이 구조적으로 필요.",
-    "요약": "최소주문금액 안내를 4단계에 걸쳐 반복 실험한 사례예요. 성공과 실패가 교차했지만 그 과정에서 \"혜택을 언제 보여줘야 하는가\"에 대한 원리를 계속 검증했습니다.",
-    "문제": "최소주문금액이 있는데 확인하려면 장바구니까지 들어가야 해 탐색-주문 사이 이탈 발생.",
-    "결정": "1단계, 가게홈에서 달성 여부 실시간 안내. 2단계, 전 지면·전 OS 확대. 3단계, 업셀링 넣지 추가. 4단계, 저단가 상품 추천과 노출 조건 조정.",
-    "근거": "매 단계 보조지표를 정밀 분석해 예상과 다른 결과의 원인을 추적. 노출 조건 충족자만 필터링해 재분석.",
-    "결과": "1·2단계는 이탈률 감소와 주문전환율 상승(정성적). 3·4단계는 표면적 실패였으나 재분석으로 \"구매의사 높은 고객에게 혜택을 보여줘야 통한다\"는 원리를 재확인.",
+    "상황제약": "라이더 1회 배달 건수 제한으로 최소주문금액 정책이 구조적으로 필요한 서비스",
+    "요약": "",
+    "문제": "퀵커머스 특성상 최소주문금액이 있는데, 이를 확인하려면 장바구니까지 들어가야 해서 탐색-주문 사이 이탈이 발생",
+    "결정": "Phase 1(2024.10): 가게홈에서 최소주문금액 달성 여부를 실시간 안내(안드로이드·가게홈 한정 소규모 실험) → 성공. \nPhase 2(2025.2): 전 지면·전 OS로 확대 → 전환율은 오르지만 평균주문금액 소폭 하락 발견(\"허들 정보가 오히려 주문금액의 천장으로 작용\"). \nPhase 3(2025.11): 업셀링 넛지(\"N원 더 담으면 N원 할인\") 추가 → 표면적으론 무효과였으나, 실제로는 노출 조건(고허들 쿠폰 보유)을 만족한 사용자가 적어서였던 것으로 재분석. \nPhase 4(2026.5): 부족 금액만큼 저단가 상품 추천 + UT 피드백 기반으로 \"8천원 이하일 때만 노출\" 조건 실험 → 전환율 개선은 없었으나 넛지를 줄인 그룹에서 평균주문금액이 떨어져 역으로 Phase 3 가설 입증",
+    "근거": "매 단계 보조지표(가드레일 지표)를 정밀 분석해 \"왜 예상과 다른가\"를 추적 — 예: 노출 조건 충족자만 필터링해서 재분석, 마케팅 정책 변화(쿠폰 운영 확대)가 실험 결과에 미친 영향까지 추적",
+    "결과": "Phase 1·2: 장바구니 이탈률 감소 + 커머스 전체 주문전환율 상승(정성적 방향만 공개, 수치 비공개). \nPhase 3·4: 표면적 실패 — 다만 재분석으로 \"구매의사 높은 고객에게 혜택 노출 시 실질 전환됨\" 원리 재확인",
     "출처": "https://techblog.woowahan.com/26379/",
     "날짜": "2026-06-26",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/d2eed95a-8366-41dd-ab12-8faba2783c57/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=f2b9edf9613e5c406676a34044fa6fe6ada6c68aa0f7630f7c75127e85856a3a&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "./images/39b3fa5c-360a-80d8-beda-e79972e544ce.png"
+  },
+  {
+    "id": "39b3fa5c-360a-8083-a7b5-f721183b7640",
+    "제목": "국비지원 수강신청 퍼널 축소",
+    "회사": "팀스파르타",
+    "도메인": "에듀테크",
+    "문제카테고리": [
+      "가입",
+      "결제"
+    ],
+    "상황제약": "국비지원은 \"내일배움카드\" 보유가 필수 조건, 1년간 담당하며 전환율 개선이 쉽지 않았던 영역",
+    "요약": "",
+    "문제": "국비지원 대상자(내일배움카드 소지자)의 수강신청 전환율을 높여야 하는데, 카드 발급 여부 확인 절차가 허들",
+    "결정": "CTA 클릭 시 뜨는 모달에 \"내일배움카드가 있다면 바로 수강신청하기\" 버튼을 추가해, 가이드 페이지를 거치지 않고 바로 신청 가능하도록 축소",
+    "근거": "\"안내를 더 보여주는 것\"이 아니라 \"안내를 건너뛰게 하는 것\"이 오히려 나을 수 있다는 역발상",
+    "결과": "1일 내 수강신청 전환율 약 6%p 개선",
+    "출처": "https://blog.career.spartaclub.kr/designer",
+    "날짜": "2024-04-05",
+    "이미지": "./images/39b3fa5c-360a-8083-a7b5-f721183b7640.png"
   },
   {
     "id": "39b3fa5c-360a-808e-83c6-ef6d5ca511a5",
@@ -191,15 +155,15 @@ let STATIC_CASES = [
     "문제카테고리": [
       "정보입력"
     ],
-    "상황제약": "지원서에 객관식과 주관식 문항이 혼재.",
-    "요약": "지원서 문항 순서만 바꿔서 제출률을 크게 끌어올린 사례예요. 사용자가 쉬운 문항부터 채운다는 패턴에 주목했습니다.",
-    "문제": "지원서 작성 페이지 접속 후 이탈이 많아 제출률이 낮음.",
-    "결정": "사용자가 순서와 무관하게 객관식을 먼저 채운다는 패턴 발견 후 문항 순서를 객관식 우선으로 재배치.",
-    "근거": "이탈 고객 행동 데이터 분석 결과 쉽은 문항부터 채우는 경향 확인.",
-    "결과": "제출률 15%에서 25%로 일주일 만에 상승. 문항 추가 후에도 안정적으로 유지.",
+    "상황제약": "지원서에 객관식+주관식 문항 혼재",
+    "요약": "",
+    "문제": "지원서 작성 페이지 접속 후 이탈하는 고객이 많아 지원서 제출률이 낮음",
+    "결정": "데이터 분석 결과 사용자가 순서와 무관하게 객관식을 먼저 채운다는 패턴을 발견 → 문항 순서를 객관식 우선으로 재배치",
+    "근거": "이탈 고객의 행동 데이터 분석 (순서 상관없이 쉬운 문항부터 채우는 경향)",
+    "결과": "제출률 15% → 25%로 일주일 만에 상승. 이후 문항을 1~2개 추가해도 제출률 안정적으로 유지",
     "출처": "https://blog.career.spartaclub.kr/designer",
     "날짜": "2024-04-05",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/75625d43-7594-4ad9-a67a-78ed331a0180/image.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=87e23981c8577a3c000f457a8f9aa291801ea433c505c8e076f72945e3a263c7&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "./images/39b3fa5c-360a-808e-83c6-ef6d5ca511a5.png"
   },
   {
     "id": "39b3fa5c-360a-80dc-96e2-e072ac0f22a5",
@@ -210,90 +174,90 @@ let STATIC_CASES = [
       "홈",
       "정보구조"
     ],
-    "상황제약": "홈 탭 자체가 마이데이터 확장으로 신설된 지 얼마 안 된 화면.",
-    "요약": "홈 화면의 분산된 섹션을 하나로 합쳐 스크롤을 줄인 사례예요. 데이터와 인터뷰 결과가 서로 일치하는 걸 확인한 뒤 진행했습니다.",
-    "문제": "홈 탭에서 금융 일정과 오늘 지출 섬션이 분리돼 있어 스크롤이 길고, 스크롤을 내릴수록 클릭 전환율이 떨어짐.",
-    "결정": "분산된 두 섬션을 하나로 통합해 스크롤을 줄임. 사용자가 실제로 보고 싶어하는 정보 위주로 재구성.",
-    "근거": "데이터 분석과 사용자 인터뷰 결과가 서로 일치함을 확인한 뒤 진행.",
-    "결과": "섬션 클릭 수 25% 상승.",
+    "상황제약": "모바일 앱, 홈 탭 자체가 마이데이터 확장에 따라 2022년 신설된 지 얼마 안 된 화면. 정량 데이터+사용자 인터뷰를 교차검증하며 진행",
+    "요약": "",
+    "문제": "홈 탭에서 \"금융 일정\"과 \"오늘 지출\" 섹션이 분리돼 있어 스크롤이 길고, 스크롤을 내릴수록 클릭 전환율이 떨어짐",
+    "결정": "분산된 두 섹션을 하나로 통합해 스크롤 자체를 줄임. 가계부에서 사용자가 실제로 보고 싶어하는 정보를 반영해 재구성",
+    "근거": "데이터 분석(스크롤 내릴수록 전환율 하락)과 사용자 인터뷰 결과가 서로 일치함을 확인한 뒤 진행",
+    "결과": "섹션 클릭 수 25% 상승",
     "출처": "https://blog.banksalad.com/tech/building-brand-new-home-3/",
     "날짜": "2024-06-26",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/c4010c5c-c6ce-4a59-8a88-b44d8bbee064/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-07-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.54.07.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=3a2a6e28af948d5d27ca44a94adac472f09586fc4d2ea3aee3dd6f62c8aa8e67&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "./images/39b3fa5c-360a-80dc-96e2-e072ac0f22a5.png"
   },
   {
     "id": "39b3fa5c-360a-8064-9ffe-f9558834ab76",
     "제목": "라프텔 로그인/가입 UX 개선: 뎁스 축소",
     "회사": "라프텔",
-    "도메인": "글로벌, 콘텐츠",
+    "도메인": "글로벌, 콘텐츠, OTT",
     "문제카테고리": [
       "가입",
       "인트로"
     ],
-    "상황제약": "신규 유저는 쉬운 가입을 원하고 기존 유저는 로그인 수단 기억을 원해 목표가 다름.",
-    "요약": "로그인까지 가는 단계 수를 줄여 사용자 불편을 낮춘 사례예요. 큰 수치보다는 문의량 감소로 효과를 체감했습니다.",
-    "문제": "로그인 필요 기능 접근 시 뎁스가 불필요하게 깊음. 소셜 로그인은 버튼을 한 번 더 눌러야 노출됨.",
-    "결정": "안내 화면 없이 바로 로그인·가입 랜딩으로 이동. 소셜 로그인 노출을 위한 추가 클릭 제거.",
-    "근거": "불필요한 뎁스가 이탈을 유발한다는 일반 원칙에 기반.",
-    "결과": "CS 담당자가 체감한 VOC 감소(정성적).",
+    "상황제약": "신규 유저와 기존 유저의 목표가 다름(신규: 쉬운 가입 / 기존: 로그인 수단 기억)",
+    "요약": "",
+    "문제": "보관함 등 로그인 필요 기능 접근 시 뎁스가 불필요하게 깊고, 이메일 외 소셜 로그인 수단은 \"다른 방법으로 계속\" 버튼을 한 번 더 눌러야 노출됨",
+    "결정": "안내 화면을 거치지 않고 바로 로그인/가입 랜딩 화면으로 이동하도록 변경, 소셜 로그인 수단 노출을 위한 추가 클릭 단계 제거",
+    "근거": "불필요한 뎁스가 사용자 이탈을 유발한다는 일반 원칙에 기반",
+    "결과": "CS 담당자의 VOC 감소 체감",
     "출처": "https://blog.laftel.net/post/15",
     "날짜": "2025-01-09",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/011536f6-81a9-4886-8865-a5f994e1d055/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-07-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.53.26.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=6c0a3449d2ad93fb86c483fda1421f9dec7e5125424eff96b3b92d276d44ff9e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "https://blog.laftel.net/api/image?type=post-property&pageId=21d3f992-bb7e-8003-aae7-f92a2dc2f232&propertyId=x%3Cjj"
   },
   {
     "id": "39b3fa5c-360a-8004-ba1b-d8e9bbe56c45",
     "제목": "라프텔 멤버십 구매 버튼 레이블 개선: 클릭률 20%→50%",
     "회사": "라프텔",
-    "도메인": "글로벌, 콘텐츠",
+    "도메인": "글로벌, 콘텐츠, OTT",
     "문제카테고리": [
       "결제"
     ],
-    "상황제약": "SVOD·TVOD 병행 서비스. 앱 로그 누락으로 웹 데이터만 분석(측정 한계 있음).",
-    "요약": "멤버십 구매 버튼의 문구만 바꿔서 클릭률을 크게 끌어올린 사례예요. 가격을 보여주는 대신 \"무제한\"이라는 가치를 강조했더니 반응이 달라졌습니다.",
-    "문제": "멤버십 작품인데 개별구매(TVOD)로 보는 유저가 예상보다 많음. 멤버십 버튼 노출 방식이 원인일 가능성.",
-    "결정": "1차, 버튼에 가격(9,900원) 직접 노출 → 클릭률 20%대로 하락. 2차, \"무제한으로 보기\"로 문구만 수정.",
-    "근거": "가격을 직접 보여주면 부담을 느껴 클릭 전에 포기함. 가격 대신 가치 중심 표현으로 전환.",
-    "결과": "문구만 바꿔 클릭률 최대 50%대로 상승. 단, 최종 멤버십 결제 전환율은 배포 전후로 큰 변화 없음.",
+    "상황제약": "SVOD(정기결제)+TVOD(개별구매) 병행 서비스, 앱 로그 누락으로 결과 분석은 웹 데이터만 사용(측정 한계 있음)",
+    "요약": "",
+    "문제": "멤버십 작품인데도 개별구매(TVOD)로 보는 유저가 예상보다 많음 → 멤버십 버튼 노출 방식이 원인일 가능성",
+    "결정": "1차: 버튼에 멤버십 가격(9,900원)을 직접 노출 → 클릭률이 오히려 30~40%에서 20%대로 하락. 2차: \"월 9,900원 멤버십으로 보기\" → \"멤버십으로 무제한 보기\"로 레이블만 수정",
+    "근거": "가격을 직접 보여주는 게 오히려 사용자에게 부담을 줘 클릭 전에 포기하게 만든다고 판단. 가격 대신 \"무제한\"이라는 가치 중심 표현으로 전환",
+    "결과": "레이블 수정만으로 클릭률 최대 50%대까지 상승. 다만 최종 멤버십 결제 전환율 자체는 배포 전후 큰 변화 없음(\"구매 의사가 명확한 사용자는 UI와 무관하게 구매\")",
     "출처": "https://blog.laftel.net/post/38",
     "날짜": "2025-06-25",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/a5d09987-03e9-42d7-9a44-1c22dc8da2a0/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-07-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.51.00.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=e5a5ba4800832789d85447266708c35eb8345bcde7bd47e30933f7b74bcfb106&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "https://blog.laftel.net/api/image?type=post-property&pageId=21d3f992-bb7e-8003-aae7-f92a2dc2f232&propertyId=x%3Cjj"
   },
   {
     "id": "39b3fa5c-360a-8018-b216-e3683e5b6c8a",
     "제목": "라프텔 글로벌 소셜 로그인 도입: 전환율 효과 검증",
     "회사": "라프텔",
-    "도메인": "콘텐츠, 글로벌",
+    "도메인": "콘텐츠, OTT, 글로벌",
     "문제카테고리": [
       "가입",
       "인증/본인확인"
     ],
-    "상황제약": "MVP 단계에서는 소셜 로그인을 뺐다가 이번에 재도입.",
-    "요약": "해외 서비스에 소셜 로그인을 다시 도입해 가입 장벽을 낮춘 사례예요. 혜택보다 가입 절차 자체가 문제였다는 걸 확인했습니다.",
-    "문제": "신규 가입 혜택을 명확히 안내해도 회원가입 전환율이 기대에 못 미침.",
-    "결정": "이메일 가입만 있던 방식에 소셜 로그인(카카오·구글·애플) 추가. 다른 변수는 유지해 효과만 분리 측정.",
-    "근거": "혜택 부족이 아니라 가입 허들 자체가 높아 전환이 안 된다는 가설로 전환.",
-    "결과": "회원가입 전환율 16.9%p 상승. 가입 이후 유료 전환율은 변화 없음. 신규 가입자 95.5%가 소셜 로그인 선택.",
+    "상황제약": "웹/앱, MVP 단계에서는 소셜 로그인을 제외했다가 이번에 재도입",
+    "요약": "",
+    "문제": "신규 가입 혜택(광고 없는 감상 재화)을 명확히 안내해도 회원가입 전환율이 기대에 못 미침",
+    "결정": "이메일 가입 절차만 있던 데서 소셜 로그인(카카오/구글/애플 등)을 추가. 가입 혜택이나 로그인 유도 지점 등 다른 변수는 그대로 유지해 소셜 로그인 자체의 효과만 분리 측정",
+    "근거": "\"혜택이 부족해서\"가 아니라 \"가입까지의 허들 자체가 높아서\" 전환이 안 된다는 가설로 전환",
+    "결과": "회원가입 전환율 +16.9%p 상승. 단, 가입 이후 유료 전환율은 유의미한 변화 없음(별개 과제로 남음). 신규 가입자의 95.5%가 소셜 로그인 선택",
     "출처": "https://blog.laftel.net/post/27",
     "날짜": "2025-06-27",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/7c2c4945-d5e3-4d1c-a131-b8e76fd7757b/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-07-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.50.31.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=a0f7e97c3358d20b4dda5f2825ea0454feb2cdfefb2b75569bacf9ac921dc5e2&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "https://blog.laftel.net/api/image?type=post-property&pageId=21d3f992-bb7e-8003-aae7-f92a2dc2f232&propertyId=x%3Cjj"
   },
   {
     "id": "39b3fa5c-360a-80fb-b614-e2bbff8a6e2a",
     "제목": "강남언니 일본 로그인 화면 개선: 실패를 통해 배우는 A/B 테스트",
     "회사": "강남언니",
-    "도메인": "헬스케어, 글로벌",
+    "도메인": "헬스케어, 뷰티, 글로벌",
     "문제카테고리": [
       "가입",
       "인트로"
     ],
-    "상황제약": "해외 진출 초기 단계라 일본 유저 유입 자체가 적어 결과 도출에 시간이 오래 걸림.",
-    "요약": "일본 시장 로그인 화면을 두 차례에 걸쳐 실험해 전환율을 크게 높인 사례예요. 1차 실패를 복기하고 변수를 하나로 좁혀 재도전했습니다.",
-    "문제": "일본 시장 로그인 화면에서 회원가입 완료율이 59.9%에 그침.",
-    "결정": "1차, 정보 부족이 원인이라 가정해 앱 소개를 늘린 3개 안을 실험했으나 기존안이 더 좋아 전부 실패. 2차, 버튼 개수와 위치를 고정하고 문구 하나만 바꿔 재실험.",
-    "근거": "1차 실패 후 가설이 두 개로 뒤섞여 있었음을 확인. 유저 인터뷰에서 소셜로그인 버튼이 개인정보 노출 우려로 부담스럽다는 새 근거 발견.",
-    "결과": "2차 실험에서 이벤트 강조안이 병원 조회수 3.58% 상승으로 채택. 1년간 누적 개선으로 회원가입 전환율 20%p 상승.",
+    "상황제약": "해외 진출 초기 단계, 일본 유저 유입 자체가 적어 유의미한 결과 도출에 시간이 오래 걸림",
+    "요약": "",
+    "문제": "일본 시장 로그인 화면에서 회원가입 완료율이 59.9%에 그침",
+    "결정": "1차: \"정보 부족이 원인\"이라 가정해 앱 소개 콘텐츠를 늘린 3개 안(A/B/C) 실험 → 기존안이 제일 좋아 전부 실패. 회고 후 2차: 변수를 하나로 통제(버튼 개수·위치 고정, \"SNS에 공유 안 됨\" 문구만 추가), 3주 기한으로 재실험",
+    "근거": "1차 실패 원인 분석 결과 가설이 2개(\"정보 필요\" + \"버튼이 많아서 힘듦\")로 뒤섞여 있었고, 실제로는 \"소셜로그인 버튼이 개인정보 노출 우려로 부담스러웠다\"는 새로운 유저 인터뷰 근거가 나옴",
+    "결과": "2차 실험: 이벤트 강조안이 병원 조회 수 3.58% 상승으로 채택. 1년간 누적 개선으로 회원가입 전환율 20%p 상승(60%→80%)",
     "출처": "https://blog.gangnamunni.com/post/AB-test-Baisc",
     "날짜": "2021-02-17",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/5a24b27a-ac59-4ef3-9f6c-e9bec9e54d63/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-07-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.49.51.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=c0534ad103a1e6246f69a3507c7c2aab8fd8b26d502ef7ce7d6b40a5f6d6b7f8&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "https://blog.gangnamunni.com/contents/posts/224d9338-d3d4-8072-a11d-d28bb783c01a/cover/20210217.jpeg"
   },
   {
     "id": "39b3fa5c-360a-80b0-9397-c2a8992604c3",
@@ -303,34 +267,34 @@ let STATIC_CASES = [
     "문제카테고리": [
       "결제"
     ],
-    "상황제약": "신용카드·페이류 등 다양한 결제수단과 즉시할인·쿠폰·마일리지가 혼재.",
-    "요약": "결제수단별 혜택을 실시간으로 보여주도록 개편해 고객이 혜택을 바로 체감하게 만든 사례예요.",
-    "문제": "주문서에서 결제수단별 혜택을 직관적으로 인지하기 어렵고 실시간 할인 반영이 안 돼 혜택 체감도가 낮음.",
-    "결정": "결제수단 선택 시 실제 할인 적용 후 최종 금액이 실시간 반영되도록 개편. 비즈니스 로직과 표시 로직 분리.",
-    "근거": "즉시할인은 회사엔 저비용이고 고객은 바로 체감 가능한 혜택인데 기존 UI엔 이 이점이 안 드러남.",
-    "결과": "구매 전환율 향상(정성적, 구체 수치 비공개).",
+    "상황제약": "모바일 앱, 신용카드·토스페이·카카오페이 등 다양한 결제수단과 즉시할인·쿠폰·마일리지가 혼재하는 구조",
+    "요약": "",
+    "문제": "주문서에서 결제수단별 혜택을 고객이 직관적으로 인지하기 어렵고, 실시간 할인 반영이 안 돼 혜택 체감도가 낮음",
+    "결정": "결제수단 선택 시 실제 할인 적용 후 최종 결제 금액이 실시간으로 반영되도록 UX 개편. 프론트엔드에서 뷰모델을 별도 정의해 비즈니스 로직과 표시 로직을 분리",
+    "근거": "즉시할인은 카드사·PG사가 비용을 부담해 회사엔 저비용, 고객은 즉시 체감 가능한 혜택인데도 기존 UI에선 이 이점이 드러나지 않았음",
+    "결과": "\"구매 전환율 향상\"이라고 서술되어 있으나 구체적 수치는 스니펫에 없음 (정성적 결과)",
     "출처": "https://techblog.musinsa.com/29cm-주문서-결제-혜택-ux-개편기-그래서-얼마에-살-수-있는-거에요-32926b6d91b6",
-    "날짜": "2025-09-15",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/fe15a8d7-50de-4bf7-bbe0-02b6d5d69bfd/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-07-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.48.47.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=9227a6cfc4a7a93e301664efc6dcce55f0b1b43a7a2aa518493d0f189a33928d&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "날짜": "2025-09-01",
+    "이미지": "https://ik.imagekit.io/jayyoungjunkim/thumb/29cm_style-onboarding_thumb.png?updatedAt=1746955895655"
   },
   {
     "id": "39b3fa5c-360a-80e0-bc2e-e5c6474cb91c",
-    "제목": "29CM 스타일 온보딩: 룩북 선택으로 가입·구매 전환율 동시 개선",
+    "제목": "29CM 스타일 온보딩룩북 선택으로 가입·구매 전환율 동시 개선",
     "회사": "29CM",
     "도메인": "커머스",
     "문제카테고리": [
       "가입",
       "인트로"
     ],
-    "상황제약": "PM 2명, 디자이너 1명 등 총 6명의 소규모 팀으로 진행.",
-    "요약": "가입 전에 스타일 취향부터 물어보는 온보딩으로 가입과 구매 전환을 동시에 높인 사례예요. 가입 즉시 개인화를 적용할 수 있게 만든 게 핵심입니다.",
-    "문제": "앱 설치 후 회원가입 완료율 44%에 불과. 가입자 18%는 7일 내 첫 구매 없이 이탈. 전체 설치자의 약 74%가 자연 이탈.",
-    "결정": "설치 직후 홈 대신 룩북 기반 스타일 온보딩을 먼저 노출. 카테고리와 스타일을 선택하게 한 뒤 가입 유도. 건너뛰기 시 좋아요 데이터가 사라진다는 점 강조.",
-    "근거": "가입 직후엔 개인화할 데이터가 없다는 문제를 발견. 온보딩 중 좋아요 신호를 미리 수집해 가입 즉시 개인화를 적용하는 전략.",
-    "결과": "가입 전환율 3.3%p 상승, 첫 구매 전환율 1.2%p 상승. 둘 다 통계적으로 유의미.",
+    "상황제약": "모바일 앱, PM 50%+디자이너 100% 소규모 팀(총 6명: PM 2, 디자이너 1, 프론트엔드 1, 백엔드 2, 데이터 분석 1), 2023년 진행",
+    "요약": "",
+    "문제": "앱 설치 후 회원가입 완료율 44%에 불과, 가입자의 18%는 7일 내 첫 구매 없이 이탈 → 전체 설치자의 약 74%가 자연 이탈",
+    "결정": "설치 직후 홈 화면 대신 룩북 기반 \"스타일 온보딩\"을 먼저 노출. 카테고리(우먼/맨/라이프스타일) 선택 → 스타일 4회 선택(편향 방지를 위해 시계방향 순환 노출) → 좋아요 데이터 기반 개인화 큐레이션 예고 → 그 다음 가입 유도. 이탈 방지를 위해 \"홈으로 건너뛰기\" 클릭 시 지금까지의 좋아요 데이터가 사라진다는 걸 강조하는 모달 노출",
+    "근거": "가입 직후엔 검색·구매 이력이 없어 개인화할 데이터가 없다는 문제를 발견 → 대신 \"좋아요\" 신호를 온보딩 중에 미리 수집해서 가입 즉시 개인화를 적용하는 전략. 시그널이 많은 유저일수록 재구매율이 높다는 자체 데이터 근거",
+    "결과": "가입 전환율 +3.3%p, 첫 구매 전환율 +1.2%p (둘 다 통계적으로 유의미) — A/B 테스트 대조군 대비",
     "출처": "https://jayyoungjun-kim.github.io/29cm-style-onboarding.html",
     "날짜": "2023-01-01",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/868c63b9-981e-432b-8dd9-f6e69492bf37/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-07-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.47.56.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=bf9430f2ec5bc2f0af2a8f8f15bb9388f6ec427881f5e5d9f2bc5a3f31da4360&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "https://ik.imagekit.io/jayyoungjunkim/thumb/29cm_style-onboarding_thumb.png?updatedAt=1746955895655"
   },
   {
     "id": "39b3fa5c-360a-8068-81c9-cefb1bcb0d43",
@@ -341,15 +305,15 @@ let STATIC_CASES = [
       "가입",
       "인증/본인확인"
     ],
-    "상황제약": "업계 평균 미확인 이메일 비율이 27~61%로 알려진 상황.",
-    "요약": "가입 확인 이메일을 놓치는 문제를 작은 아이디어로 해결한 사례예요. 받은편지함 전체가 아니라 인증 메일만 바로 보여줬더니 확인율이 올라갔습니다.",
-    "문제": "가입 후 이메일 인증 링크를 확인하지 않고 이탈하는 사용자 비율이 높음.",
-    "결정": "인증 메일 링크 클릭 시 자사 도메인 메일만 필터링해 보여주는 \"Sniper Link\"로 자동 이동.",
-    "근거": "받은편지함에 메일이 많을수록 인증 메일을 놓치기 쉽다는 \"Hick's Law\"에 근거.",
-    "결과": "이메일 인증률 7% 상승, 미확인 비율 6%까지 감소.",
+    "상황제약": "웹 서비스, 업계 평균 미확인 이메일 비율이 27~61%(출처: Litmus, Mailchimp)로 알려진 상황",
+    "요약": "",
+    "문제": "가입 후 이메일 인증 링크를 확인하지 않고 이탈하는 사용자 비율이 높음",
+    "결정": "인증 메일 안내 링크를 클릭하면 받은편지함에서 자사 도메인 메일만 검색되도록 필터링된 URL(\"Sniper Link\")로 자동 이동하게 변경. 인박스 전체가 아니라 목표 메일만 바로 보여주는 방식",
+    "근거": "사용자가 받은편지함에서 수많은 메일 사이에 인증 메일을 놓치는 것(\"Hick's Law\" — 선택지가 많을수록 행동이 어려움)이 핵심 원인이라고 판단",
+    "결과": "A/B 테스트로 이메일 인증률 7% 상승, 미확인 비율을 6%까지 낮춤 (자체 언급, 연도당 수천 건의 추가 가입 효과)",
     "출처": "https://growth.design/case-studies/sniper-link",
     "날짜": "2022-07-01",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/a4ba43ed-19c7-494c-ae5f-1cacec1a1606/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-07-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.47.28.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=2785745d3a5c6403c582bb046f01f4d2b3b650c2b9b21f15a246deac69c979db&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "./images/39b3fa5c-360a-8068-81c9-cefb1bcb0d43.png"
   },
   {
     "id": "39b3fa5c-360a-8092-9372-f7c17cefc28f",
@@ -360,15 +324,15 @@ let STATIC_CASES = [
       "가입",
       "인트로"
     ],
-    "상황제약": "이전 실험에서 문구 반응 패턴을 이미 확보한 상태.",
-    "요약": "기능 설명 문구를 상황을 상상하게 만드는 문구로 바꿔 전환율을 높인 사례예요. 이전 실험에서 얻은 학습을 그대로 확장 적용했습니다.",
-    "문제": "비회원 가입 인트로 화면의 전환율을 추가로 개선해야 함.",
-    "결정": "기능 설명형 문구를 사용자가 이익을 체감하는 구체적 상황을 상상하게 하는 문구로 전환.",
-    "근거": "이전 실험에서 확인한 \"관심사에 맞춘 문구가 CTR·CVR을 높인다\"는 학습을 그대로 적용.",
-    "결과": "CTR 5% 상승, CVR도 유의미하게 상승.",
+    "상황제약": "모바일 앱, 이전 실험(3-2건)에서 문구 반응 패턴을 이미 확보한 상태",
+    "요약": "",
+    "문제": "비회원 가입 인트로 화면의 전환율 추가 개선",
+    "결정": "기능 설명형 문구(\"하루만 넣어둬도 이자 받을 수 있어요\") → 사용자가 이익을 체감하는 구체적 상황을 상상하게 하는 문구로 전환",
+    "근거": "이전 실험에서 \"사용자 관심사에 맞춘 문구가 CTR·CVR을 높인다\"는 학습을 그대로 확장 적용",
+    "결과": "CTR 5% 상승, CVR도 유의미하게 상승",
     "출처": "https://toss.tech/article/45391",
     "날짜": "2026-02-27",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/7a9a490c-4a65-4ca2-9b15-95bbdf89bb9d/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-07-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.46.23.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=bf37bb7bf88cec302c8868026a35342a8ca2b67faa978f63a30915422c63f3a7&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "./images/39b3fa5c-360a-8092-9372-f7c17cefc28f.png"
   },
   {
     "id": "39b3fa5c-360a-80e2-bf33-f0efb13da725",
@@ -379,15 +343,15 @@ let STATIC_CASES = [
       "가입",
       "인트로"
     ],
-    "상황제약": "저사양 기기를 포함한 다양한 디바이스 환경.",
-    "요약": "문구와 로딩 속도라는 두 가지 문제를 함께 해결해 처음으로 유의미한 개선을 만든 사례예요.",
-    "문제": "비회원 가입 인트로 화면의 낮은 전환율.",
-    "결정": "매력 없던 문구를 반응 좋은 키워드로 교체하고, 이미지를 저용량 확장자로 바꿔 로딩 속도 개선.",
-    "근거": "기존 화면을 분석해 매력 없는 문구와 느린 로딩이라는 두 가지 문제를 명확히 정의.",
-    "결과": "클릭률과 전환율 모두 상승. 첫 유의미한 개선.",
+    "상황제약": "모바일 앱, 저사양 기기 포함 다양한 디바이스 환경",
+    "요약": "",
+    "문제": "비회원 가입 인트로 화면의 낮은 전환율",
+    "결정": "매력적이지 않던 문구를 사용자가 반응하는 키워드(고금리 상품, 매일 이자 받기)로 교체 + 이미지를 저용량 확장자로 바꿔 로딩 속도 개선(기존 저사양 기기에서 2~3초 지연)",
+    "근거": "새 시안을 만들기보다 기존 화면을 분석해 문제를 2가지로 명확히 정의(매력 없는 문구, 느린 로딩)한 뒤 접근",
+    "결과": "클릭률과 전환율 모두 상승 (첫 유의미한 개선)",
     "출처": "https://toss.tech/article/45391",
     "날짜": "2026-02-27",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/f3d9c02e-fad8-4e75-9a2b-b226f3934756/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-07-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.45.35.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=a9e4d8337da7cb4fa1d22c423bb97aaff4ce5243874b2ea62d7acd76d199840f&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "./images/39b3fa5c-360a-80e2-bf33-f0efb13da725.png"
   },
   {
     "id": "39b3fa5c-360a-80fa-8811-dbecbbb7321a",
@@ -398,15 +362,15 @@ let STATIC_CASES = [
       "가입",
       "인트로"
     ],
-    "상황제약": "이미 많은 실험이 진행된 성숙한 퍼널을 실험 설계 경험이 없는 인턴이 담당.",
-    "요약": "선택지를 줄이면 전환율이 오를 거라 가정했지만 실제로는 반대 결과를 얻은 실패 사례예요. 가설 자체가 기존 상태를 잘못 파악했던 게 원인이었습니다.",
-    "문제": "비회원 가입 인트로 화면의 낮은 전환율.",
-    "결정": "상담원이 추천하는 컨셉과 선택지를 줄인 화면으로 교체. 결과적으로 버튼은 1개에서 2개로 오히려 늘어남.",
-    "근거": "선택지가 적으면 전환율이 오를 거라는 가설이었으나 기존 화면의 선택지가 이미 더 적었음.",
-    "결과": "클릭률 10% 이상 하락, CVR 3% 이상 하락. 실패.",
+    "상황제약": "모바일 앱, 이미 많은 실험이 진행된 성숙한 퍼널, 인턴(실험 설계 경험 없음)이 담당",
+    "요약": "",
+    "문제": "비회원 가입 인트로 화면의 낮은 전환율",
+    "결정": "상담원이 추천하는 컨셉 + 선택지를 줄인 화면으로 교체 (기존 CTA 버튼 1개 → 버튼 2개로 오히려 늘어남)",
+    "근거": "\"선택지가 적으면 전환율이 오를 것\"이라는 가설이었으나, 실제로는 기존 화면의 선택지가 더 적었음(가설 자체가 기존 상태를 잘못 파악)",
+    "결과": "클릭률 10% 이상 하락, CVR 3% 이상 하락 — 실패",
     "출처": "https://toss.tech/article/45391",
     "날짜": "2026-02-27",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/84679c68-1966-417d-bd74-00aecc57931d/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2026-07-23_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_9.44.43.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=d8d311998ad79d894d0a9fdaf5e1abb501c1c3d314795f8a0dc2349cf70ad2a8&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "./images/39b3fa5c-360a-80fa-8811-dbecbbb7321a.png"
   },
   {
     "id": "39b3fa5c-360a-80f3-b1c2-c0492c459c8e",
@@ -416,15 +380,15 @@ let STATIC_CASES = [
     "문제카테고리": [
       "인증/본인확인"
     ],
-    "상황제약": "타겟이 특히 정보 접근성이 낮은 블루칼러 외국인 노동자.",
-    "요약": "외국인 사용자의 인증 실패 원인을 현장 인터뷰로 직접 찾아낸 사례예요. 리서치 방식도 캐주얼하게 바꿔서 진짜 이야기를 들을 수 있었습니다.",
-    "문제": "외국인 사용자의 가입·인증 단계 이탈.",
-    "결정": "이름 입력 구조 개선(성·이름 띄어쓰기 등)과 인증 절차 개선. 리서치도 공식적 인터뷰 대신 다문화센터 방문으로 변경.",
-    "근거": "외국인등록증 이름 포맷이 은행·통신사 등록 이름과 불일치해 인증 실패가 반복됨. 실패 사유 안내도 없고 5회 초과 시 진행 불가.",
-    "결과": "외국인 인증 퍼널 통과율 약 15% 상승. 내국인과의 통과율 격차 해소 수준까지 개선.",
+    "상황제약": "모바일 앱, 사내 리서치팀 보유(1인 프로젝트 아님), 타겟이 특히 블루칼라 외국인 노동자(정보 접근성 낮은 사용자군)",
+    "요약": "",
+    "문제": "외국인 사용자의 가입/인증 단계 이탈 (온보딩 이탈)",
+    "결정": "이름 입력 구조 개선(성/이름 띄어쓰기 등 포맷 문제 해결) + 인증 절차 개선. 리서치 방법 자체도 조정: 정장·서류 차림의 공식적 인터뷰 대신 캐주얼한 접근으로 전환, 길거리 인터뷰 한계를 깨닫고 다문화센터 방문으로 전환",
+    "근거": "외국인 등록증 이름 포맷이 은행 계좌·통신사 등록 이름과 불일치해 인증 실패 반복 (8년간 인증 성공 못한 사례도 확인). 실패 원인을 안내받지 못하고 5회 초과 시 진행 불가라는 점도 확인",
+    "결과": "외국인 인증 퍼널 통과율 약 15% 상승, 내국인과의 통과율 격차 해소 수준까지 개선",
     "출처": "https://toss.tech/article/45787",
     "날짜": "2026-03-06",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/63da4f4d-165d-4503-8f18-c2afc713c602/%E1%84%90%E1%85%A9%E1%84%89%E1%85%B3_%E1%84%8B%E1%85%AC%E1%84%80%E1%85%AE%E1%86%A8%E1%84%8B%E1%85%B5%E1%86%AB_%E1%84%8B%E1%85%B2%E1%84%8C%E1%85%A5_%E1%84%8B%E1%85%B5%E1%86%AB%E1%84%8C%E1%85%B3%E1%86%BC_%E1%84%80%E1%85%A2%E1%84%89%E1%85%A5%E1%86%AB.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=ad773a53b99eedf9e4da43b6a5b1675801c14d113ec992055072581b37590ff1&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "https://static.toss.im/ml-illust/spq0kqa82fmyu5jp7ruvbhkd-resize.png"
   },
   {
     "id": "39b3fa5c-360a-8012-95f0-e0804954e0ae",
@@ -435,15 +399,15 @@ let STATIC_CASES = [
       "가입",
       "정보입력"
     ],
-    "상황제약": "이미 성숙한 서비스. 시니어 사용자 급증이라는 인구 변화에 대응 필요.",
-    "요약": "시니어 사용자 증가에 맞춰 가입 화면을 여러 번 개선한 시도예요. 세 가지 안은 실패했지만 네 번째 시도에서 \"왜 필요한지\" 설명을 더하자 반응이 달라졌습니다.",
-    "문제": "가입 완료율 저하. 주 가입 연령대가 2030에서 시니어로 바뀌며 기존 UX가 안 맞음.",
-    "결정": "권한 요구 축소, 인트로 삭제, 시니어 친화 UI 모두 기각. 최종적으로 정보 입력 이유를 설명하는 문구 추가.",
-    "근거": "UT에서 확인, 문제는 \"무엇을 묻는지\"가 아니라 \"왜 묻는지\" 설명 부재. Android는 설명 없이 요구해 거부감 유발.",
-    "결과": "앞선 세 가지 시도는 유의미한 차이 없음. 네 번째 시도에서 처음으로 가입 완료율 상승(수치 비공개).",
+    "상황제약": "모바일 앱(Android/iOS), 이미 성숙한 서비스(가입 프로세스가 이미 최적화됐다고 자부하던 상태), 시니어 사용자 급증이라는 인구 변화 대응",
+    "요약": "",
+    "문제": "가입 완료율 저하 (주 가입 연령대가 2030→시니어로 바뀌며 기존 UX가 안 맞게 됨)",
+    "결정": "① 권한 요구 축소(Android 4→3개) — 기각\n\n② 인트로 화면 삭제, 바로 이름 입력 — 기각 \n\n③ 시니어 친화 UI(큰 텍스트, 강제 확인 버튼) — 기각 \n\n④ 최종 채택: 왜 정보를 입력해야 하는지 맥락을 설명하는 문구 추가\n문구: 토스를 시작하려면 본인인증을 해주세요",
+    "근거": "UT에서 발견한 사실\n: 문제는 \"무엇을 묻는지\"가 아니라 \"왜 물어야 하는지 설명이 없는 것\". \nAndroid는 맥락 설명 없이 바로 정보를 요구해 거부감을 유발했고, iOS는 설명이 있어 거부감이 적었음",
+    "결과": "①②③은 모두 \"가입 전환율 유의미한 차이 없음\". \n④에서 처음으로 가입 완료율 상승 (구체적 수치는 비공개, 정성적 결과로 기록)",
     "출처": "https://toss.tech/article/signup",
     "날짜": "2023-09-12",
-    "이미지": "https://prod-files-secure.s3.us-west-2.amazonaws.com/6ac5c595-d1d3-405e-9148-349f5464694d/0222dac3-af27-4526-a57e-16f6de7a82f6/%E1%84%90%E1%85%A9%E1%84%89%E1%85%B3_%E1%84%80%E1%85%A1%E1%84%8B%E1%85%B5%E1%86%B8_%E1%84%80%E1%85%AA%E1%84%8C%E1%85%A5%E1%86%BC_%E1%84%80%E1%85%A2%E1%84%89%E1%85%A5%E1%86%AB.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664OQVNMPG%2F20260804%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20260804T085939Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEAaCXVzLXdlc3QtMiJIMEYCIQCifkSrveZSeG2bwMFSVovVzEL1ehSYpf%2BPUupuTiwbCwIhAPDPW2uYzdPjfR%2B9fbkbYhO8q3ZtF3sBA13FsJTRS%2F%2FrKv8DCAkQABoMNjM3NDIzMTgzODA1Igx7uWnAwd8HyspJGl0q3AMCFfDoLZkeEmQBgkYN7VD9uKogOZla0xgSgOLY%2BHemxywrRHxstbT1qTfb%2Bc2M4kE5AV6%2B1%2Fafqm6Dm80%2FxtsUcPAdkvIRSZuAbYEQIvYpK8nJ73%2Frh8%2F5wF4GfqbGf9hkBAK4SlXAe0T24fZxKDgUq87pK9FeGAp9CLCxfkoBCUtrAPBnKGzMp%2FEoqq%2FixqVb2h67ufcA6%2BJU40ddcwHIypvqWemWhD89PM9iOlUwlDBMZJw%2F%2BVtwIFfsOWL6S1ulHQ2e3pDqS9nhu6lBhGw0reakCJ5QdQaAGjUsLRp2oMxdcKQUNsQAtpJA%2BIENS%2BcHhTzXQx60a9Osn2lr%2BlM0QV6NhHRsryNVDFrDFyvbBrEVfqcgea1o7zmoU5oIWdfEbMSPHK0mNBs6BPuhKPJQM4rtVe0hMoNRk82ymHNFVj2JiTMW2sfX2YSkx%2FT9s%2FCzAT0ZYSJRfvjVpgkncaqpTHb4Tjh0iYCuN6l%2FqhkbRSXnkPk5gs5946YRHznXaVDWSdfBN7ze8nEDARmA9n2dDBBm0wxHLAxt1SCjnG2Co%2FXZvFKNiGZrTkfbrXxbdAs0J8gxWpCYbbXIJt%2BCy365MrKQ6p3d5zwK6b2SKPzmWb5wfymi2I8XAdjqxzDdusbTBjqkAQd2awFk8x8jmNDDMIEdy8F1yktFYVhqz%2FTfQ0yEDms3gWPbPWMh94pgDIeUw6COu79wFsOxXEUROe3XXNeaKvHqaYgUlHhU86%2BCRcvDCOYfZaKzyQjCuU4PztbrnRAZDYyuaHmycAc88K5UMSC%2F6orRQaxtSSKPMLrv2ETK9jBCfMXz5hJLociLVAsW2OaWVVzGNS8h%2FzRcdMJ6Hdj63IC2wXoN&X-Amz-Signature=159af7c81f83f2ee6a665b32e9c32ac0589a0212d1983708302a2340a7abba0e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+    "이미지": "https://static.toss.im/simplicity23/graphics/sim23-signup-og.png"
   }
 ];
 
